@@ -1,0 +1,7 @@
+@import url(./header__main-menu.css);
+
+.header{
+    background: url(./header__background.png) no-repeat;
+    background-size: cover;
+    padding-bottom: 80px;
+}

@@ -1,0 +1,10 @@
+@import url(./search__main-subtitle.css);
+@import url(./search__main-title.css);
+@import url(./search__form.css);
+@import url(./search__input.css);
+@import url(./search__submit.css);
+
+.search {
+    width:608px;
+    margin:auto;
+}

@@ -1,0 +1,9 @@
+@import url(./search-results__container.css);
+@import url(./search-results__title.css);
+@import url(./search-results__more-link.css);
+@import url(./search-results__more-container.css);
+
+.search-results {
+    background: #F5F6F7;
+    padding:80px 0;
+}

@@ -1,0 +1,10 @@
+@import url(./header__main-menu_container.css);
+@import url(./header__main-menu_link-container.css);
+@import url(./header__main-menu_link.css);
+@import url(./header__main-menu_autorisation-link.css);
+@import url(./header__main-menu_link_active.css);
+@import url(./header__main-menu_main-link.css);
+
+.header__main-menu {
+    border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+}

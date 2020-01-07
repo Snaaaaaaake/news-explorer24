@@ -1,0 +1,9 @@
+@import url(./about__photo.css);
+@import url(./about__text.css);
+@import url(./about__title.css);
+
+.about {
+    padding: 80px 0;
+    display: flex;
+    justify-content: space-between;
+}

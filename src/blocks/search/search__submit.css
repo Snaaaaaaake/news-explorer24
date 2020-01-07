@@ -1,0 +1,13 @@
+.search__submit {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    display:block;
+    line-height: 64px;
+    background: #2F71E5;
+    color:#fff;
+    width:168px;
+    border-radius: 100px;
+    border: 1px solid #2F71E5;
+}
