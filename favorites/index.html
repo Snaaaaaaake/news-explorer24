@@ -4,11 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Что в мире творится?</title>
+    <link rel="stylesheet" href="../favorites/favorites.37c2a148057019608392.css">
+    <link rel="icon" href=".././images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
 </head>
 <body>
-    Hello World!
-	<img src=".././images/about__photo.jpg" >
-    <script src="../_ Mail Cloud/учеба/Спринты/Дипломная/news-explorer-frontend/dist/favorites/favorites.571e41f01c23d17a80e3.js"></script>
+    <header class="header">
+        <nav class="header__main-menu">
+            <div class="width-corrector header__main-menu_container">
+                <div class="header__main-menu_link-container">
+                    <a class="header__main-menu_link header__main-menu_main-link" href="/">NewsExplorer</a>
+                </div>
+                <div class="header__main-menu_link-container">
+                    <a class="header__main-menu_link header__main-menu_link_active" href="/">Главная</a>
+                    <a class="header__main-menu_link header__main-menu_favorites-link" href="/favorites">Сохраненные статьи</a>
+                    <a class="header__main-menu_link header__main-menu_link-oval header__main-menu_autorisation-link" href="#">Авторизоваться</a>
+                    <a class="header__main-menu_link header__main-menu_link-oval header__main-menu_logout-link element_disabled"  title="Выйти" href="#">Username</a>
+                </div>
+            </div>
+        </nav>
+        <section class="search">
+            <h1 class="search__main-title">Что в мире творится?</h1>
+            <p class="search__main-subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+            <form class="search__form">
+                <input class="search__input" type="search" name="search__input" placeholder="Введите тему новости">
+                <button class="search__submit" type="submit">Поиск</button>
+            </form>
+        </section>
+    </header>
+    <main class="main">
+        <section class="search-results element_disabled">
+            <div class="width-corrector">
+                <div class="search-results__container">
+                  <h2 class="search-results__title">Результаты поиска</h2>
+                  <div class="search-results__content"></div>
+                  <div class="search-results__more-container">
+                      <a href="#" class="search-results__more-link" title="Загрузить ещё результаты">Показать еще</a>
+                  </div>
+                </div>
+                <div class="search-results_preloader">
+                  Прелоадер!
+                </div>
+                <div class="search-results_error">
+                  Ошибка!
+                </div>
+            </div>
+        </section>
+        <div class="width-corrector">
+            <section class="about">
+                <img src=".././images/about__photo.jpg" alt="Фотография" class="about__photo">
+                <div class="about__container">
+                    <h3 class="about__title">Об авторе</h3>
+                    <p class="about__text">Тест</p>
+                    <p class="about__text">Функционал сайта написан с нуля, фронтенд и бекенд. Соответствие методологии БЭМ, использованы возможности Java Script ES6, семантические HTML5 теги, бэкенд написан на Node.js, база MongoDB, проект собран при помощи Webpack.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="width-corrector footer_container">
+            <div class="footer__element">
+                <p class="footer__copyright">&#169; news-explorer24.ru</p>
+            </div>
+            <div class="footer__element">
+                <a class="footer__link" href="/" >Главная</a>
+                <a class="footer__link" href="https://praktikum.yandex.ru/">Яндекс.Практикум</a>
+            </div>
+            <div class="footer__element">
+                <a class="footer__link" href="#" ><img src=".././images/footer__icon_github.svg" alt="Ссылка на GitHub" class="footer__icon"></a>
+                <a class="footer__link" href="#" ><img src=".././images/footer__icon_facebook.svg" alt="Ссылка на Facebook" class="footer__icon"></a>
+            </div>
+        </div>
+
+
+
+    </footer>
+    <script src="../favorites/favorites.571e41f01c23d17a80e3.js"></script>
 </body>
 </html>
