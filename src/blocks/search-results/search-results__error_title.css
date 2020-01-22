@@ -1,0 +1,8 @@
+.search-results__error_title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  color: #1A1B22;
+  margin:31px 0 16px;
+}

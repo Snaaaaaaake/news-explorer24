@@ -1,0 +1,5 @@
+.article__information_block {
+  max-height: 264px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

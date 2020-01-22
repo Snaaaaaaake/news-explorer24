@@ -7,10 +7,16 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  entry: { main: './src/index.js', favorites: './src/favorites.js' },
+  entry: { 
+	main: './src/js/main.js', 
+	favorites: './src/js/favorites.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js'
+    filename: './[name]/[name].[chunkhash].js',
+  },
+  devServer: {
+    contentBase: path.join(__dirname, '/dist/')
   },
   module: {
     rules: [
@@ -24,7 +30,7 @@ module.exports = {
       {
         test: /\.css$/i,
 		use: [
-         (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
+         (isDev ? { loader: 'style-loader' } : { loader: MiniCssExtractPlugin.loader, options: { publicPath: '../' } }),
          'css-loader', 
          'postcss-loader'
 		]
@@ -36,7 +42,7 @@ module.exports = {
 	  {
 		test: /\.(png|jpg|gif|ico|svg)$/,
 		use: [
-			'file-loader?name=./images/[name].[ext]',
+			isDev ? 'file-loader?name=./images/[name].[ext]' : 'file-loader?name=./images/[name].[ext]',
 			{
 				loader: 'image-webpack-loader',
 				options: {}
@@ -47,7 +53,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({ // 
-      filename: 'style.[contenthash].css',
+      filename: '[name]/[name].[contenthash].css',
     }),
 	new OptimizeCssAssetsPlugin({
      assetNameRegExp: /\.css$/g,
@@ -59,13 +65,13 @@ module.exports = {
 	}),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/index.html',
+      template: './src/main.html',
       filename: 'index.html'
     }),
 	new HtmlWebpackPlugin({
       inject: false,
       template: './src/favorites.html',
-      filename: 'favorites.html'
+      filename: 'favorites/index.html'
     }),
     new WebpackMd5Hash(),
 	new webpack.DefinePlugin({

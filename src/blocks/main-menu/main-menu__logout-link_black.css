@@ -1,0 +1,4 @@
+.main-menu__logout-link_black {
+  background:url(./main-menu__logout-link_icon-black.svg) no-repeat;
+  background-position: right 10px center;
+}

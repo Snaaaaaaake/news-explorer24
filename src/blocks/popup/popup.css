@@ -1,7 +1,18 @@
+@import url(./popup__title.css);
+@import url(./popup__close.css);
+@import url(./popup_is-opened.css);
+@import url(./popup__overlay.css);
+
 .popup {
+    display:none;
     position: fixed;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
     width: 430px;
+    border-radius: 16px;
+    padding:34px 36px;
+    background-color: white;
+    box-sizing: border-box;
+    z-index: 100;
 }

@@ -1,0 +1,9 @@
+.search-results__error_subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #B6BCBF;
+  width: 330px;
+  margin: 0 auto 0 auto;
+}

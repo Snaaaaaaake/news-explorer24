@@ -1,0 +1,13 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "no-underscore-dangle":"off",
+    "linebreak-style":"off",
+	"class-methods-use-this":"off",
+	"no-param-reassign": 0
+  },
+  "env": {
+        "browser": true,
+        "node": true
+   }
+}

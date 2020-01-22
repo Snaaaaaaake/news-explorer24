@@ -1,7 +1,2 @@
-@import url(./header__main-menu.css);
-
-.header{
-    background: url(./header__background.png) no-repeat;
-    background-size: cover;
-    padding-bottom: 80px;
-}
+@import url(./header_black.css);
+@import url(./header_white.css);

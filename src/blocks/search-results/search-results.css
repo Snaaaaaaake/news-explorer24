@@ -1,7 +1,10 @@
-@import url(./search-results__container.css);
+@import url(./search-results__content.css);
 @import url(./search-results__title.css);
 @import url(./search-results__more-link.css);
 @import url(./search-results__more-container.css);
+@import url(./search-results__error.css);
+@import url(./search-results__error_title.css);
+@import url(./search-results__error_subtitle.css);
 
 .search-results {
     background: #F5F6F7;
