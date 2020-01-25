@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Что в мире творится?</title>
-    <link rel="stylesheet" href="main/main.820d495a00968d53be99.css">
+    <link rel="stylesheet" href="main/main.d0c7242c536928581b0d.css">
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
+    <header class="header header_black">
         <div class="header__main-menu-container"></div>
         <section class="search">
             <h1 class="search__main-title">Что в мире творится?</h1>
@@ -32,11 +30,14 @@
                       <a href="#" class="search-results__more-link" title="Загрузить ещё результаты">Показать еще</a>
                   </div>
                 </div>
-                <div class="search-results_preloader">
-                  Прелоадер!
+                <div class="search-results__preloader">
+                  <div class="preloader"></div>
+                  <p class="preloader_text">Идет поиск новостей...</p>
                 </div>
-                <div class="search-results_error">
-                  Ошибка!
+                <div class="search-results__error">
+                  <img src="./images/search-results__error_icon.png" alt="Ничего не найдено" class="search-results__error">
+                  <p class="search-results__error_title">Ничего не найдено</p>
+                  <p class="search-results__error_subtitle">К сожалению по вашему запросу ничего не найдено.</p>
                 </div>
             </div>
         </section>
@@ -54,10 +55,10 @@
     <footer class="footer">
         <div class="width-corrector footer_container">
             <div class="footer__element">
-                <p class="footer__copyright">&#169; news-explorer24.ru</p>
+                <p class="footer__copyright">&#169; News-Explorer24.ru</p>
             </div>
             <div class="footer__element">
-                <a class="footer__link" href="./" >Главная</a>
+                <a class="footer__link" href="/" >Главная</a>
                 <a class="footer__link" href="https://praktikum.yandex.ru/">Яндекс.Практикум</a>
             </div>
             <div class="footer__element">
@@ -65,54 +66,7 @@
                 <a class="footer__link" href="#" ><img src="./images/footer__icon_facebook.svg" alt="Ссылка на Facebook" class="footer__icon"></a>
             </div>
         </div>
-
-        <!--
-        <div class="popup popup__registration">
-            <div class="popup__close" title="Закрыть"></div>
-            <h6 class="popup__title">Регистрация</h6>
-            <div class="popup__content">
-                <form name="popupRegistration" class="popup__form popup__form_registration" novalidate>
-                    <label for="popupRegistrationEmail" class="popup__label">Email</label>
-                    <input type="text" id="popupRegistrationEmail" name="popupRegistrationEmail" class="popup__input popup__form_email" placeholder="Введите почту">
-                    <p class="popup__input_error">Тест</p>
-                    <label for="popupRegistrationPassword" class="popup__label">Пароль</label>
-                    <input type="password" id="popupRegistrationPassword" name="popupRegistrationPassword" class="popup__input popup__form_password" placeholder="Введите пароль">
-                    <p class="popup__input_error"></p>
-                    <label for="popupRegistrationName" class="popup__label">Имя</label>
-                    <input type="text" id="popupRegistrationName" name="popupRegistrationName" class="popup__input popup__form_name" placeholder="Введите своё имя">
-                    <p class="popup__input_error">Тест</p>
-                    <p class="popup__input_respond-error"></p>
-                    <button  class="popup__button" type="submit">Зарегистрироваться</button>
-                </form>
-                <p class="popup__footer">
-                    или
-                    <a href="#" class="popup__footer_link popup__footer_link_login">Войти</a>
-                </p>
-            </div>
-        </div>
-        <div class="popup popup__login">
-            <div class="popup__close" title="Закрыть"></div>
-            <h6 class="popup__title">Вход</h6>
-            <div class="popup__content">
-                <form name="popupLogin" class="popup__form popup__form_login" novalidate>
-                    <label for="popupLoginEmail" class="popup__label">Email</label>
-                    <input type="text" id="popupLoginEmail" name="popupLoginEmail" class="popup__input popup__form_email" placeholder="Введите почту">
-                    <p class="popup__input_error"></p>
-                    <label for="popupLoginPassword" class="popup__label">Пароль</label>
-                    <input type="password" id="popupLoginPassword" name="popupLoginPassword" class="popup__input popup__form_password" placeholder="Введите пароль">
-                    <p class="popup__input_error"></p>
-                    <p class="popup__input_respond-error"></p>
-                    <button  class="popup__button" type="submit">Войти</button>
-                </form>
-                <p class="popup__footer">
-                    или
-                    <a href="#" class="popup__footer_link popup__footer_link_reg">Зарегистрироваться</a>
-                </p>
-            </div>
-        </div>
-        -->
-
     </footer>
-    <script src="./main/main.123ce010ee88064c865e.js"></script>
+    <script src="./main/main.a5d11876f6a89bfccadd.js"></script>
 </body>
 </html>
