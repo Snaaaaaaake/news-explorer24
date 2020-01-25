@@ -27,7 +27,7 @@ export default class NewsCardList {
     this.addMoreButton.classList.remove('element_disabled');
     for (let i = 0; i < 3; i += 1) {
       if (this.newsCardsArray.length > 0) {
-        this.searchResiltsContent.appendChild(this.newsCardsArray[0].item);
+        this.searchResiltsContent.appendChild(this.newsCardsArray[0].domElement);
         this.newsCardsArray.shift();
       }
     }

@@ -46,6 +46,44 @@ class MainApi {
       .then((res) => res.json())
       .catch((err) => console.log(err));
   }
+
+  addArticle(keyword, title, description, date, source, url, image) {
+    return fetch(`${this.baseUrl}/articles`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: this.baseHeader,
+      body: JSON.stringify({
+        keyword,
+        title,
+        description,
+        date,
+        source,
+        url,
+        image,
+      }),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  }
+
+  getUserArticles() {
+    return fetch(`${this.baseUrl}/articles`, {
+      credentials: 'include',
+      headers: this.baseHeader,
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  }
+
+  deleteArticle(id) {
+    return fetch(`${this.baseUrl}/articles/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: this.baseHeader,
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  }
 }
 const mainApi = new MainApi('https://api.news-explorer24.ru');
 export default mainApi;

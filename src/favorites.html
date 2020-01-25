@@ -23,17 +23,15 @@
     <section class="search-results">
       <div class="width-corrector">
         <div class="search-results__container">
-          <h2 class="search-results__title">Вы ещё не добавили в избранное ни одной статьи</h2>
           <div class="search-results__content"></div>
-          <div class="search-results__more-container">
-            <a href="#" class="search-results__more-link element_disabled" title="Загрузить ещё результаты">Показать еще</a>
-          </div>
         </div>
-        <div class="search-results_preloader">
-          Прелоадер!
+        <div class="search-results__preloader">
+          <div class="preloader"></div>
+          <p class="preloader_text">Идет поиск новостей...</p>
         </div>
-        <div class="search-results_error">
-          Ошибка!
+        <div class="search-results__error element_disabled">
+          <img src="../<%=require('./images/search-results__error_icon.png').default%>" alt="Ничего не найдено" class="search-results__error">
+          <p class="search-results__error_title">Вы ещё не добавили в избранное ни одной статьи</p>
         </div>
       </div>
     </section>
@@ -44,7 +42,7 @@
           <p class="footer__copyright">&#169; News-Explorer24.ru</p>
         </div>
         <div class="footer__element">
-          <a class="footer__link" href="/" >Главная</a>
+          <a class="footer__link" href="../" >Главная</a>
           <a class="footer__link" href="https://praktikum.yandex.ru/">Яндекс.Практикум</a>
         </div>
         <div class="footer__element">

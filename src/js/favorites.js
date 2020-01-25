@@ -2,18 +2,16 @@ import '../pages/favorites.css';
 import Popup from './components/Popup';
 import FormRegistration from './components/FormRegistration';
 import FormLogin from './components/FormLogin';
-import NewsApi from './api/NewsApi';
 import NewsCard from './components/NewsCard';
-import NewsCardList from './components/NewsCardList';
 import MainMenu from './components/MainMenu';
 import mainApi from './api/MainApi';
+import FavoriteCardList from './components/FavoriteCardList';
 
 const formLogin = new FormLogin();
 const formRegistration = new FormRegistration();
 const popup = new Popup();
-const newsApi = new NewsApi('a6db4f983f5945259966f4ee4ac8106e');
-const newsCardList = new NewsCardList(document.querySelector('.search-results'));
 const mainMenu = new MainMenu(document.querySelector('.header__main-menu-container'));
+const favoriteCardList = new FavoriteCardList(document.querySelector('.search-results'));
 
 function popupLoginOpenHandler() {
   popup.open('Вход', formLogin);
@@ -32,6 +30,14 @@ mainApi.getUser().then((res) => {
     document.location.href = './';
   } else {
     mainMenu.userMenuRender(res.name);
+    mainApi.getUserArticles().then((data) => {
+      if (data.length === 0) {
+        favoriteCardList.renderError();
+      } else {
+        const newsCardsArray = data.map((item) => new NewsCard(item));
+        favoriteCardList.addCards(newsCardsArray);
+      }
+    });
   }
 });
 

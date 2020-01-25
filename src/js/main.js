@@ -35,7 +35,8 @@ document.querySelector('.search__form').addEventListener('submit', (event) => {
     if (data.articles.length === 0) {
       newsCardList.renderError();
     } else {
-      const newsCardsArray = data.articles.map((item) => new NewsCard(item));
+      const keyword = document.querySelector('.search__input').value;
+      const newsCardsArray = data.articles.map((item) => new NewsCard(item, keyword));
       newsCardList.addCards(newsCardsArray);
     }
   });
