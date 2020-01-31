@@ -1,5 +1,6 @@
 import mainApi from '../api/MainApi';
 import logoutLinkIcon from '../constants/logoutLinkIcon';
+import siteHref from '../constants/siteHref';
 import { sliderButtonIconOpen, sliderButtonIconClose } from '../constants/sliderButtonIcons';
 
 export default class MainMenu {
@@ -42,14 +43,14 @@ export default class MainMenu {
     domElement.innerHTML = `
     <div class="main-menu__container width-corrector">
         <div class="main-menu__link-container">
-            <a class="main-menu__link main-menu__logo-link" title="Агрегатор новостей NewsExplorer24" href="/">NewsExplorer24</a>
+            <a class="main-menu__link main-menu__logo-link" title="Агрегатор новостей NewsExplorer24" href="${siteHref}">NewsExplorer24</a>
         </div>
         <div class="main-menu__link-container">
           <button class="main-menu__slider-button" title="Показать меню"></button>
         </div>
         <div class="main-menu__link-container main-menu__slider main-menu__slider_hidden">
-            <a class="main-menu__link main-menu__main-page-link" title="На главную" href="/">Главная</a>
-            <a class="main-menu__link main-menu__favorites-link element_disabled" title="Страница ваших сохраненных статей" href="favorites">Сохраненные статьи</a>
+            <a class="main-menu__link main-menu__main-page-link" title="На главную" href="${siteHref}">Главная</a>
+            <a class="main-menu__link main-menu__favorites-link element_disabled" title="Страница ваших сохраненных статей" href="${siteHref}favorites">Сохраненные статьи</a>
             <button class="main-menu__link main-menu__link-oval main-menu__autorisation-link element_disabled">Авторизоваться</button>
             <button class="main-menu__link main-menu__link-oval main-menu__logout-link element_disabled"  title="Выйти"></button>
         </div>

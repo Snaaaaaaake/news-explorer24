@@ -7,6 +7,7 @@ import NewsCard from './components/NewsCard';
 import NewsCardList from './components/NewsCardList';
 import MainMenu from './components/MainMenu';
 import mainApi from './api/MainApi';
+import siteHref from './constants/siteHref';
 
 const formLogin = new FormLogin();
 const formRegistration = new FormRegistration();
@@ -58,3 +59,6 @@ mainApi.getUser().then((res) => {
 });
 
 mainMenu.getWhite();
+
+// костыль
+document.querySelector('.footer__link_main').setAttribute('href', siteHref);

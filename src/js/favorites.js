@@ -6,6 +6,7 @@ import NewsCard from './components/NewsCard';
 import MainMenu from './components/MainMenu';
 import mainApi from './api/MainApi';
 import FavoriteCardList from './components/FavoriteCardList';
+import siteHref from './constants/siteHref';
 
 const formLogin = new FormLogin();
 const formRegistration = new FormRegistration();
@@ -28,7 +29,7 @@ formRegistration.setResponseMethod(popup.responceRender);
 // проверка логин
 mainApi.getUser().then((res) => {
   if (res.statusCode) {
-    document.location.href = './';
+    document.location.href = `${siteHref}`;
   } else {
     mainMenu.userMenuRender(res.name);
     isUserLoggedIn = true;
@@ -44,3 +45,6 @@ mainApi.getUser().then((res) => {
 });
 
 mainMenu.getBlack();
+
+// костыль
+document.querySelector('.footer__link_main').setAttribute('href', siteHref);
