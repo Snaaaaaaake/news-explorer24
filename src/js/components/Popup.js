@@ -15,12 +15,12 @@ export default class Popup {
     }
     this.title.textContent = title;
     this.contentContainer.appendChild(content.domElement);
-    this.domElement.classList.add('popup_is-opened');
+    this.domElement.classList.remove('element_disabled');
     this.overlay.classList.remove('element_disabled');
   }
 
   close() {
-    this.domElement.classList.remove('popup_is-opened');
+    this.domElement.classList.add('element_disabled');
     this.overlay.classList.add('element_disabled');
   }
 
@@ -37,6 +37,7 @@ export default class Popup {
   _createDomElement() {
     const domElement = document.createElement('div');
     domElement.classList.add('popup');
+    domElement.classList.add('element_disabled');
     domElement.innerHTML = `
       <div class="popup__close" title="Закрыть"></div>
       <h6 class="popup__title"></h6>
@@ -51,7 +52,7 @@ export default class Popup {
 
   _createOverlay() {
     const overlay = document.createElement('div');
-    overlay.classList.add('popup-overlay');
+    overlay.classList.add('overlay');
     overlay.classList.add('element_disabled');
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => {

@@ -1,4 +1,5 @@
 const articleFavoriteIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+articleFavoriteIcon.classList.add('article__svg-icon_stroke');
 articleFavoriteIcon.classList.add('article__svg-icon');
 articleFavoriteIcon.setAttribute('viewBox', '0 0 24 24');
 articleFavoriteIcon.setAttribute('width', '24');

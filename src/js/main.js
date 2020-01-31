@@ -14,6 +14,7 @@ const popup = new Popup();
 const newsApi = new NewsApi('a6db4f983f5945259966f4ee4ac8106e');
 const newsCardList = new NewsCardList(document.querySelector('.search-results'));
 const mainMenu = new MainMenu(document.querySelector('.header__main-menu-container'));
+let isUserLoggedIn;
 
 // Обработчики
 function popupLoginOpenHandler() {
@@ -36,7 +37,11 @@ document.querySelector('.search__form').addEventListener('submit', (event) => {
       newsCardList.renderError();
     } else {
       const keyword = document.querySelector('.search__input').value;
-      const newsCardsArray = data.articles.map((item) => new NewsCard(item, keyword));
+      const newsCardsArray = data.articles.map((item) => new NewsCard(
+        item,
+        isUserLoggedIn,
+        keyword,
+      ));
       newsCardList.addCards(newsCardsArray);
     }
   });
@@ -48,6 +53,7 @@ mainApi.getUser().then((res) => {
     mainMenu.guestMenuRender();
   } else {
     mainMenu.userMenuRender(res.name);
+    isUserLoggedIn = true;
   }
 });
 

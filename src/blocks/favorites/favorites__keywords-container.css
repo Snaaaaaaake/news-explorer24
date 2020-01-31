@@ -5,3 +5,11 @@
   color: #1A1B22;
   margin: 0 0 56px;
 }
+
+@media (max-width:1279px) {
+  .favorites__keywords-container {
+  margin-bottom: 32px;
+  font-size: 14px;
+  line-height: 24px;
+ }
+}

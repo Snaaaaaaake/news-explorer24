@@ -12,6 +12,7 @@ const formRegistration = new FormRegistration();
 const popup = new Popup();
 const mainMenu = new MainMenu(document.querySelector('.header__main-menu-container'));
 const favoriteCardList = new FavoriteCardList(document.querySelector('.search-results'));
+let isUserLoggedIn;
 
 function popupLoginOpenHandler() {
   popup.open('Вход', formLogin);
@@ -30,11 +31,12 @@ mainApi.getUser().then((res) => {
     document.location.href = './';
   } else {
     mainMenu.userMenuRender(res.name);
+    isUserLoggedIn = true;
     mainApi.getUserArticles().then((data) => {
       if (data.length === 0) {
         favoriteCardList.renderError();
       } else {
-        const newsCardsArray = data.map((item) => new NewsCard(item));
+        const newsCardsArray = data.map((item) => new NewsCard(item, isUserLoggedIn));
         favoriteCardList.addCards(newsCardsArray);
       }
     });

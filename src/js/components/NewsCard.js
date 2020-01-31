@@ -8,7 +8,7 @@ moment().format();
 moment.locale('ru');
 
 export default class NewsCard {
-  constructor(data, keyword) {
+  constructor(data, isUserLoggedIn, keyword) {
     this.title = data.title;
     this.description = data.description;
     this.date = data.publishedAt || data.date;
@@ -18,30 +18,35 @@ export default class NewsCard {
     this.keyword = keyword || data.keyword;
     this.id = data._id || null;
     this.domElement = this._createDomElement();
+    this.eventListeners = this._getEventListeners();
     this.keywordContainer = this.domElement.querySelector('.article__keyword');
     this.keywordContainer.textContent = this.keyword;
-    this.addToFavoritesButton = this.domElement.querySelector('.article__favorite');
-    this.deleteArticleButton = this.domElement.querySelector('.article__delete');
+    this.favoritesButton = this.domElement.querySelector('.article__favorites-button');
+    // исправить!
+    this.favoritesButton.appendChild(articleFavoriteIcon.cloneNode(true));
+    //
     this.helpContainer = this.domElement.querySelector('.article__help');
-    // Определяем, на какой странице мы нахоодимся и рендерим нужные кнопки
-    if (this.id) {
-      this.deleteArticleButton.classList.remove('element_disabled');
-      this.keywordContainer.classList.remove('element_disabled');
-    } else {
-      this.addToFavoritesButton.classList.remove('element_disabled');
+    // Залогинен ли?
+    if (isUserLoggedIn) {
+      // Определяем, на какой странице мы нахоодимся и рендерим нужные кнопки
+      if (this.id) {
+        this._renderDeleteButton();
+        this.keywordContainer.classList.remove('element_disabled');
+        this.helpContainer.textContent = 'Удалить статью';
+      } else {
+        this._renderAddButton();
+        this.helpContainer.textContent = 'Сохранить статью';
+      }
     }
-    this.domElement.addEventListener('click', this._clickEventListeners.bind(this));
-    this.domElement.addEventListener('mouseover', this._mouseoverEventListeners.bind(this));
   }
 
   _createDomElement() {
     const domElement = document.createElement('article');
     domElement.classList.add('article');
     domElement.innerHTML = `
-      <div class="article__favorite article__svg-icon_container element_disabled" title="Добавить в сохраненные статьи"></div>
-      <div class="article__delete article__svg-icon_container element_disabled" title="Удалить из сохраненныых статей"></div>
+      <div class="article__favorites-button article__svg-icon_container"></div>
       <div class="article__keyword element_disabled" title="Ключевое слово данной статьи"></div>
-      <div class="article__help"></div>
+      <div class="article__help">Войдите, чтобы сохранять статьи</div>
       <div class="article__picture" style="background: url(${this.image}) center no-repeat"></div>
       <div class="article__information">
         <a href="${this.url}" class="article__link" title="Читать полную версию статьи">
@@ -54,16 +59,37 @@ export default class NewsCard {
         </a>
       </div>
     `;
-    domElement.querySelector('.article__favorite').appendChild(articleFavoriteIcon.cloneNode(true));
-    domElement.querySelector('.article__delete').appendChild(articleDeleteIcon.cloneNode(true));
     return domElement;
   }
 
-  _clickEventListeners(event) {
-    // Добавляем статью в избранное
-    if (event.target === this.addToFavoritesButton
-    || event.target.parentNode === this.addToFavoritesButton
-    || event.target.parentNode.parentNode === this.addToFavoritesButton) {
+  _renderAddButton() {
+    this._clearFavoritesButton();
+    this.favoritesButton.appendChild(articleFavoriteIcon.cloneNode(true));
+    this.favoritesButton.addEventListener('click', this.eventListeners.add);
+  }
+
+  _renderDeleteButton() {
+    this._clearFavoritesButton();
+    this.favoritesButton.appendChild(articleDeleteIcon.cloneNode(true));
+    this.favoritesButton.addEventListener('click', this.eventListeners.del);
+  }
+
+  _renderDeleteBlueButton() {
+    this._clearFavoritesButton();
+    this.favoritesButton.appendChild(articleFavoriteIcon.cloneNode(true));
+    this.favoritesButton.querySelector('.article__svg-icon').classList.add('article__svg-icon_blue');
+    this.favoritesButton.addEventListener('click', this.eventListeners.delFromBlueState);
+  }
+
+  _clearFavoritesButton() {
+    this.favoritesButton.removeChild(this.favoritesButton.firstChild);
+    Object.values(this.eventListeners).forEach((item) => {
+      this.favoritesButton.removeEventListener('click', item);
+    });
+  }
+
+  _getEventListeners() {
+    const add = function () {
       mainApi.addArticle(
         this.keyword,
         this.title,
@@ -75,16 +101,16 @@ export default class NewsCard {
       )
         .then((res) => {
           if (res.statusCode === 201) {
-            this.helpContainer.textContent = 'Статья добавлена!';
+            this.helpContainer.textContent = 'Статья сохранена';
+            this._renderDeleteBlueButton();
+            this.id = res.id;
           } else {
             this.helpContainer.textContent = res.message;
           }
         });
-    }
-    // Удаляем статью из избранного
-    if (event.target === this.deleteArticleButton
-    || event.target.parentNode === this.deleteArticleButton
-    || event.target.parentNode.parentNode === this.deleteArticleButton) {
+    }.bind(this);
+
+    const del = function () {
       mainApi.deleteArticle(this.id)
         .then((res) => {
           if (res.statusCode === 200) {
@@ -93,15 +119,20 @@ export default class NewsCard {
             this.helpContainer.textContent = res.message;
           }
         });
-    }
-  }
+    }.bind(this);
 
-  _mouseoverEventListeners(event) {
-    if (event.target === this.addToFavoritesButton) {
-      this.helpContainer.textContent = 'Сохранить статью';
-    }
-    if (event.target === this.deleteArticleButton) {
-      this.helpContainer.textContent = 'Удалить из сохраненных';
-    }
+    const delFromBlueState = function () {
+      mainApi.deleteArticle(this.id)
+        .then((res) => {
+          if (res.statusCode === 200) {
+            this.helpContainer.textContent = 'Статья удалена';
+            this._renderAddButton();
+          } else {
+            this.helpContainer.textContent = res.message;
+          }
+        });
+    }.bind(this);
+
+    return { add, del, delFromBlueState };
   }
 }

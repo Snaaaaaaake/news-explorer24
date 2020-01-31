@@ -5,3 +5,11 @@
     color: #1A1B22;
     margin:0 0 16px 0;
 }
+
+@media (max-width:1279px) {
+  .article__title {
+    font-size: 22px;
+    line-height: 24px;
+    margin-bottom:10px;
+ }
+}

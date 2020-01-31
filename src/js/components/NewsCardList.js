@@ -6,7 +6,7 @@ export default class NewsCardList {
     this.searchResiltsContent = this.domElement.querySelector('.search-results__content');
     this.searchResiltsError = this.domElement.querySelector('.search-results__error');
     this.searchResiltsPreloader = this.domElement.querySelector('.search-results__preloader');
-    this.addMoreButton = this.domElement.querySelector('.search-results__more-link');
+    this.addMoreButton = this.domElement.querySelector('.search-results__more-button');
     this.addMoreButton.addEventListener('click', (event) => {
       event.preventDefault();
       this._renderResults();

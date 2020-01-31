@@ -4,6 +4,13 @@
     right: -40px;
     width: 40px;
     height: 40px;
-    background: url(./popup__close-icon.svg) no-repeat center center;
+    background: url(../../images/popup__close-icon.svg) no-repeat center center;
     cursor: pointer;
+}
+
+@media (max-width:600px) {
+  .popup__close{
+    top: -51px;
+    right: 8px;
+  }
 }

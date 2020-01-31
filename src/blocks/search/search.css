@@ -5,7 +5,24 @@
 @import url(./search__submit.css);
 
 .search {
-    width:608px;
-    margin:auto;
-    padding-bottom: 80px;
+  width:608px;
+  margin:auto;
+  padding-bottom: 80px;
+}
+
+@media (max-width:1279px) {
+  .search {
+    width:58%;
+    max-width: 500px;
+    padding-bottom: 48px;
+  }
+}
+
+@media (max-width:600px) {
+  .search {
+    width:100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    padding-bottom: 32px;
+  }
 }

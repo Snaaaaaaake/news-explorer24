@@ -1,0 +1,7 @@
+@media (max-width:600px) {
+  .main-menu__slider_hidden{
+    visibility: hidden;
+    opacity: 0;
+    transform: scaleY(0.6);
+  }
+}

@@ -1,4 +1,10 @@
 .header_black {
-  background: url(../../images/header__background.png) no-repeat;
+  background: url(../../images/header__background.png) no-repeat center;
   background-size: cover;
+}
+
+@media (max-width:600px) {
+  .header_black {
+    background: url(../../images/header__background_mini.png) no-repeat center;
+  }
 }

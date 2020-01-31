@@ -7,3 +7,9 @@
     color: #B6BCBF;
     margin: 0;
 }
+
+@media (max-width:1279px) {
+  .article__source {
+    font-weight: 500;
+ }
+}

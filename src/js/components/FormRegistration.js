@@ -38,30 +38,29 @@ export default class FormRegistration extends Form {
     domElement.innerHTML = `
     <form name="popupRegistration" class="form form__registration" novalidate>
       <label for="popupRegistrationEmail" class="form__label">Email</label>
-      <input type="text" id="popupRegistrationEmail" name="popupRegistrationEmail" class="form__input form__input_email" placeholder="Введите почту">
+      <input type="text" id="popupRegistrationEmail" name="popupRegistrationEmail" class="form__input form__input_email form-element" placeholder="Введите почту">
       <p class="form__input_error"></p>
       <label for="popupRegistrationPassword" class="form__label">Пароль</label>
-      <input type="password" id="popupRegistrationPassword" name="popupRegistrationPassword" class="form__input form__input_password" placeholder="Введите пароль">
+      <input type="password" id="popupRegistrationPassword" name="popupRegistrationPassword" class="form__input form__input_password form-element" placeholder="Введите пароль">
       <p class="form__input_error"></p>
       <label for="popupRegistrationName" class="form__label">Имя</label>
-      <input type="text" id="popupRegistrationName" name="popupRegistrationName" class="form__input form__input_name" placeholder="Введите своё имя">
+      <input type="text" id="popupRegistrationName" name="popupRegistrationName" class="form__input form__input_name form-element" placeholder="Введите своё имя">
       <p class="form__input_error"></p>
       <p class="form__input_response-error"></p>
-      <button class="form__button" type="submit">Зарегистрироваться</button>
+      <button class="form__button form-element" type="submit">Зарегистрироваться</button>
     </form>
     <p class="form__footer">
       или
-      <a href="#" class="form__footer_link form__footer_link_login">Войти</a>
+      <button class="form__footer_link form__footer_link_login">Войти</button>
     </p>
   `;
     return domElement;
   }
 
   _createResponseLink() {
-    const responseLink = document.createElement('a');
+    const responseLink = document.createElement('button');
     responseLink.classList.add('form__footer_link');
     responseLink.classList.add('form__footer_responce-link');
-    responseLink.setAttribute('href', '#');
     responseLink.textContent = 'Выполнить вход';
     return responseLink;
   }

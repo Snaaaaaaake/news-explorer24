@@ -1,0 +1,7 @@
+.main-menu__slider-button_icon {
+  fill: #fff;
+}
+
+.main-menu__link_black .main-menu__slider-button_icon {
+  fill: #1A1B22;
+}

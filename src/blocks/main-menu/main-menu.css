@@ -4,8 +4,19 @@
 @import url(./main-menu__link-oval.css);
 @import url(./main-menu__link_active.css);
 @import url(./main-menu__logo-link.css);
-@import url(./main-menu__logout-link.css);
-@import url(./main-menu__logout-link_black.css);
+@import url(./main-menu__logout-link_icon.css);
 @import url(./main-menu__link_black.css);
+@import url(./main-menu__slider.css);
+@import url(./main-menu__slider_hidden.css);
+@import url(./main-menu__slider-button.css);
+@import url(./main-menu__slider-button_icon.css);
 @import url(./main-menu_black.css);
 @import url(./main-menu_white.css);
+@import url(./main-menu_opened.css);
+
+@media (max-width:600px) {
+  .main-menu {
+    position: relative;
+    z-index: 95;
+  }
+}

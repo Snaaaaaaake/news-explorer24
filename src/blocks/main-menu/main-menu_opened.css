@@ -1,0 +1,9 @@
+@media (max-width:600px) {
+  .main-menu_black.main-menu_opened{
+    background-color: white;
+  }
+
+  .main-menu_white.main-menu_opened{
+    background-color: #1A1B22;
+  }
+}

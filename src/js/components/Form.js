@@ -20,12 +20,14 @@ export default class Form {
 
   _validateInputElement(event) {
     // Обработка отдельного инпута при нажатии клавиатуры с выводом ошибки
-    const { isValid, message } = inputValidation(event.target);
-    const errorContainer = event.target.nextSibling.nextSibling;
-    if (!isValid) {
-      errorContainer.textContent = message;
-    } else {
-      errorContainer.textContent = '';
+    if (event.target.classList.contains('form__input')) {
+      const { isValid, message } = inputValidation(event.target);
+      const errorContainer = event.target.nextSibling.nextSibling;
+      if (!isValid) {
+        errorContainer.textContent = message;
+      } else {
+        errorContainer.textContent = '';
+      }
     }
     // Обработка всех инпутов для валидации кнопки
     const inputs = this.form.querySelectorAll('.form__input');

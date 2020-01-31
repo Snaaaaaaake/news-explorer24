@@ -5,3 +5,10 @@
   color: rgba(26, 27, 34, 0.5);
   margin: 40px 0 28px;
 }
+
+@media (max-width:1279px) {
+  .favorites__title {
+    font-size: 14px;
+    margin: 24px 0 16px;
+ }
+}

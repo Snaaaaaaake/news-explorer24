@@ -3,3 +3,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@media (max-width:1279px) {
+  .article__information_block {
+    max-height: 238px;
+ }
+}

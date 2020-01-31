@@ -1,5 +1,4 @@
 .about__photo {
-    display:block;
-    border-radius: 232px;
-    margin-right:56px;
+  border-radius: 232px;
+  width:100%;
 }

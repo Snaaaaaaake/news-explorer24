@@ -31,17 +31,17 @@ export default class FormLogin extends Form {
     domElement.innerHTML = `
     <form name="formLogin" class="form form__login" novalidate>
     <label for="formLoginEmail" class="form__label">Email</label>
-    <input type="text" id="formLoginEmail" name="formLoginEmail" class="form__input form__input_email" placeholder="Введите почту">
+    <input type="text" id="formLoginEmail" name="formLoginEmail" class="form__input form__input_email form-element" placeholder="Введите почту">
     <p class="form__input_error"></p>
     <label for="formLoginPassword" class="form__label">Пароль</label>
-    <input type="password" id="formLoginPassword" name="formLoginPassword" class="form__input form__input_password" placeholder="Введите пароль">
+    <input type="password" id="formLoginPassword" name="formLoginPassword" class="form__input form__input_password form-element" placeholder="Введите пароль">
     <p class="form__input_error"></p>
     <p class="form__input_response-error"></p>
-    <button  class="form__button" type="submit">Войти</button>
+    <button class="form__button form-element" type="submit">Войти</button>
     </form>
     <p class="form__footer">
       или
-      <a href="#" class="form__footer_link form__footer_link_reg">Зарегистрироваться</a>
+      <button class="form__footer_link form__footer_link_reg">Зарегистрироваться</button>
     </p>
   `;
     return domElement;

@@ -1,9 +1,21 @@
 import mainApi from '../api/MainApi';
+import logoutLinkIcon from '../constants/logoutLinkIcon';
+import { sliderButtonIconOpen, sliderButtonIconClose } from '../constants/sliderButtonIcons';
 
 export default class MainMenu {
   constructor(parentElement) {
     this.domElement = this._createDomElement();
     parentElement.appendChild(this.domElement);
+    this.sliderElement = this.domElement.querySelector('.main-menu__slider');
+    this.overlay = this._createOverlay();
+    this.sliderButton = this.domElement.querySelector('.main-menu__slider-button');
+    // исправить!
+    this.sliderButton.appendChild(sliderButtonIconOpen);
+    this.sliderButton.appendChild(sliderButtonIconClose);
+    //
+    this.sliderButton.addEventListener('click', () => {
+      this.sliderToggle();
+    });
     this.logoLink = this.domElement.querySelector('.main-menu__logo-link');
     this.mainPageLink = this.domElement.querySelector('.main-menu__main-page-link');
     this.favoritesLink = this.domElement.querySelector('.main-menu__favorites-link');
@@ -20,6 +32,7 @@ export default class MainMenu {
       this.favoritesLink,
       this.autorisationLink,
       this.logoutLink,
+      this.sliderButton,
     ];
   }
 
@@ -32,13 +45,24 @@ export default class MainMenu {
             <a class="main-menu__link main-menu__logo-link" title="Агрегатор новостей NewsExplorer24" href="/">NewsExplorer24</a>
         </div>
         <div class="main-menu__link-container">
+          <button class="main-menu__slider-button" title="Показать меню"></button>
+        </div>
+        <div class="main-menu__link-container main-menu__slider main-menu__slider_hidden">
             <a class="main-menu__link main-menu__main-page-link" title="На главную" href="/">Главная</a>
-            <a class="main-menu__link main-menu__favorites-link element_disabled" href="favorites">Сохраненные статьи</a>
-            <a class="main-menu__link main-menu__link-oval main-menu__autorisation-link element_disabled" href="#">Авторизоваться</a>
-            <a class="main-menu__link main-menu__link-oval main-menu__logout-link element_disabled"  title="Выйти" href="#">Username</a>
+            <a class="main-menu__link main-menu__favorites-link element_disabled" title="Страница ваших сохраненных статей" href="favorites">Сохраненные статьи</a>
+            <button class="main-menu__link main-menu__link-oval main-menu__autorisation-link element_disabled">Авторизоваться</button>
+            <button class="main-menu__link main-menu__link-oval main-menu__logout-link element_disabled"  title="Выйти"></button>
         </div>
     </div>`;
     return domElement;
+  }
+
+  sliderToggle() {
+    this.sliderElement.classList.toggle('main-menu__slider_hidden');
+    this.domElement.classList.toggle('main-menu_opened');
+    this.overlay.classList.toggle('element_disabled');
+    this.sliderButton.children[0].classList.toggle('element_disabled');
+    this.sliderButton.children[1].classList.toggle('element_disabled');
   }
 
   getWhite() {
@@ -72,9 +96,21 @@ export default class MainMenu {
     this.autorisationLink.classList.add('element_disabled');
     this.logoutLink.classList.remove('element_disabled');
     this.logoutLink.textContent = username;
+    this.logoutLink.appendChild(logoutLinkIcon);
   }
 
   setLinkHandler(handler) {
     this.autorisationLink.addEventListener('click', handler);
+  }
+
+  _createOverlay() {
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    overlay.classList.add('element_disabled');
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', () => {
+      this.sliderToggle();
+    });
+    return overlay;
   }
 }

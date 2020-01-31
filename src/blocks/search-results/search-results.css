@@ -1,12 +1,24 @@
 @import url(./search-results__content.css);
 @import url(./search-results__title.css);
-@import url(./search-results__more-link.css);
+@import url(./search-results__more-button.css);
 @import url(./search-results__more-container.css);
 @import url(./search-results__error.css);
 @import url(./search-results__error_title.css);
 @import url(./search-results__error_subtitle.css);
 
 .search-results {
-    background: #F5F6F7;
-    padding:80px 0;
+  background: #F5F6F7;
+  padding:80px 0;
+}
+
+@media (max-width:1279px) {
+  .search-results {
+    padding:40px 0;
+  }
+}
+
+@media (max-width:600px) {
+  .search-results {
+    padding:32px 0;
+  }
 }

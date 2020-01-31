@@ -1,10 +1,23 @@
 .search__main-subtitle {
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: normal;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFF;
+  margin: 32px 0 64px;
+}
+
+@media (max-width:1279px) {
+  .search__main-subtitle {
+    margin:16px 0 48px 0;
     font-size: 18px;
     line-height: 24px;
-    color: #FFF;
-    margin: 32px 0 64px;
-    width:530px;
+  }
+}
+
+@media (max-width:600px) {
+  .search__main-subtitle {
+    margin-bottom: 122px;
+  }
 }

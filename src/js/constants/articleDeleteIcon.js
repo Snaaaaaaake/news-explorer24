@@ -1,4 +1,5 @@
 const articleDeleteIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+articleDeleteIcon.classList.add('article__svg-icon');
 articleDeleteIcon.classList.add('article__svg-icon_fill');
 articleDeleteIcon.setAttribute('viewBox', '0 0 18 19');
 articleDeleteIcon.setAttribute('width', '18');
