@@ -29,7 +29,7 @@ formRegistration.setResponseMethod(popup.responceRender);
 // проверка логин
 mainApi.getUser().then((res) => {
   if (res.statusCode) {
-    document.location.href = `${siteHref}`;
+    // document.location.href = `${siteHref}`;
   } else {
     mainMenu.userMenuRender(res.name);
     isUserLoggedIn = true;
