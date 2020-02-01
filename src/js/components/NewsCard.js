@@ -49,7 +49,7 @@ export default class NewsCard {
       <div class="article__help">Войдите, чтобы сохранять статьи</div>
       <div class="article__picture" style="background: url(${this.image}) center no-repeat"></div>
       <div class="article__information">
-        <a href="${this.url}" class="article__link" title="Читать полную версию статьи">
+        <a href="${this.url}" target="_blank" class="article__link" title="Читать полную версию статьи">
           <div class="article__information_block">
             <time class="article__date" datetime="${this.date}">${moment(this.date).format('LL')}</time>
             <h5 class="article__title">${this.title}</h5>
