@@ -1,0 +1,36 @@
+.search__submit {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  display:block;
+  line-height: 64px;
+  background: #2F71E5;
+  color:#fff;
+  width:168px;
+  border-radius: 100px;
+  border: 1px solid #2F71E5;
+}
+
+.search__submit:hover {
+  cursor: pointer;
+  background: #347EFF;
+  border: 1px solid #347EFF;
+}
+
+.search__submit:active {
+  background: #2A65CC;
+  border: 1px solid #2A65CC;
+}
+
+@media (max-width:1279px) {
+  .search__submit {
+    line-height: 56px;
+    width:160px;
+  }
+}
+
+@media (max-width:600px) {
+  .search__submit {
+    width:100%;
+  }
+}

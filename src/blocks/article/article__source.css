@@ -1,0 +1,15 @@
+.article__source {
+  font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #B6BCBF;
+    margin: 0;
+}
+
+@media (max-width:1279px) {
+  .article__source {
+    font-weight: 500;
+ }
+}

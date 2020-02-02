@@ -1,0 +1,25 @@
+@media (max-width:600px) {
+  .main-menu__slider{
+    visibility: visible;
+    position: absolute;
+    flex-direction: column;
+    width:100%;
+    box-sizing: border-box;
+    align-items: flex-start;
+    padding:16px 16px 24px 16px;
+    top: 57px;
+    left: 0;
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: 0 0;
+    transition: all 0.3s ease-out;
+  }
+
+  .main-menu_black .main-menu__slider{
+    background-color: white;
+  }
+
+  .main-menu_white .main-menu__slider{
+    background-color: #1A1B22;
+  }
+}

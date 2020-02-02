@@ -1,0 +1,18 @@
+.search__form {
+    background-color: #fff;
+    border: 1px solid #D1D2D6;
+    border-radius: 100px;
+    border:none;
+    display:flex;
+    justify-content: space-between;
+}
+
+@media (max-width:600px) {
+  .search__form {
+    display:grid;
+    grid-gap: 16px;
+    grid-template-columns: 1fr;
+    background-color: inherit;
+    border: none;
+  }
+}

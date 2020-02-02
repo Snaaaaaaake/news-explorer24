@@ -1,0 +1,38 @@
+.main-menu__link {
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 80px;
+  text-decoration: none;
+  color: #B6BCBF;
+  display:block;
+  margin-right:32px;
+}
+
+.main-menu__link:hover {
+  opacity: 0.7;
+}
+
+@media (max-width:1279px) {
+  .main-menu__link {
+    font-size: 16px;
+    margin-right:16px;
+    line-height: 66px;
+  }
+}
+
+@media (max-width:600px) {
+  .main-menu__link{
+    color: #FFF;
+    line-height: 56px;
+    font-size: 18px;
+    box-sizing: border-box;
+    width:100%;
+    margin: 0;
+  }
+}

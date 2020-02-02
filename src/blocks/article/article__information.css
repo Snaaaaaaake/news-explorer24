@@ -1,0 +1,13 @@
+.article__information {
+    padding: 24px;
+    background: #FFF;
+    border-radius: 0 0 10px 10px;
+    height: 304px;
+}
+
+@media (max-width:1279px) {
+  .article__information {
+    padding: 16px;
+    height: 270px;
+ }
+}

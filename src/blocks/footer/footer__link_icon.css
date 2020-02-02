@@ -1,0 +1,6 @@
+@media (max-width:700px) {
+  .footer__link_icon {
+    display: inline-block;
+    margin-left: 27px;
+  }
+}

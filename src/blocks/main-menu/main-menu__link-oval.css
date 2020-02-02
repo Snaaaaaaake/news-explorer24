@@ -1,0 +1,16 @@
+.main-menu__link-oval {
+  line-height: 40px;
+  border:1px solid #FFF;
+  border-radius: 100px;
+  padding:0 10px 0 10px;
+  margin-right:0;
+  color: #fff;
+}
+
+@media (max-width:600px) {
+  .main-menu__link-oval{
+    margin: 22px 0 0 0;
+    line-height: 56px;
+    text-align: center;
+  }
+}

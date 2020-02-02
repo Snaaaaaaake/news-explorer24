@@ -1,0 +1,32 @@
+.search-results__more-button {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 64px;
+  color: #1A1B22;
+  padding:0 84px;
+  margin-top:64px;
+  background-color: white;
+  border-radius: 32px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-results__more-button:hover {
+  opacity: 0.7;
+}
+
+@media (max-width:1279px) {
+  .search-results__more-button {
+    margin-top:32px;
+    line-height: 56px;
+ }
+}
+
+@media (max-width:600px) {
+  .search-results__more-button {
+    margin-top:15px;
+  }
+}

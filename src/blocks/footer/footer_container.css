@@ -1,0 +1,13 @@
+.footer_container {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width:700px) {
+  .footer_container {
+    align-items: flex-start;
+    display:grid;
+    grid-template-columns: auto auto;
+  }
+}
