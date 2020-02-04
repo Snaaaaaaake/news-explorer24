@@ -12,8 +12,12 @@ const formLogin = new FormLogin();
 const formRegistration = new FormRegistration();
 const popup = new Popup();
 const mainMenu = new MainMenu(document.querySelector('.header__main-menu-container'));
-const favoriteCardList = new FavoriteCardList(document.querySelector('.search-results'));
+const favoriteCardList = new FavoriteCardList(
+  document.querySelector('.search-results'),
+  document.querySelector('.favorites'),
+);
 let isUserLoggedIn;
+const favoritesPageUserNameElement = document.querySelector('.favorites__username');
 
 function popupLoginOpenHandler() {
   popup.open('Вход', formLogin);
@@ -29,16 +33,17 @@ formRegistration.setResponseMethod(popup.responceRender);
 // проверка логин
 mainApi.getUser().then((res) => {
   if (res.statusCode) {
-    // document.location.href = `${siteHref}`;
+    document.location.href = `${siteHref}`;
   } else {
     mainMenu.userMenuRender(res.name);
+    favoritesPageUserNameElement.textContent = res.name;
     isUserLoggedIn = true;
     mainApi.getUserArticles().then((data) => {
-      if (data.length === 0) {
-        favoriteCardList.renderError();
-      } else {
+      if (data.length > 0) {
         const newsCardsArray = data.map((item) => new NewsCard(item, isUserLoggedIn));
         favoriteCardList.addCards(newsCardsArray);
+      } else {
+        favoriteCardList.renderError();
       }
     });
   }

@@ -7,6 +7,7 @@ export default class FormRegistration extends Form {
     this.domElement = this._createDomElement();
     this.responseLink = this._createResponseLink();
     this.responseError = this.domElement.querySelector('.form__input_response-error');
+    this.footerLink = this.domElement.querySelector('.form__footer_link_login');
     this.formButton = this.domElement.querySelector('.form__button');
     this.form = this.domElement.querySelector('.form');
     this.form.addEventListener('keyup', this._validateInputElement.bind(this));
@@ -28,7 +29,7 @@ export default class FormRegistration extends Form {
       if (res.statusCode) {
         this.responseError.textContent = res.message;
       } else {
-        this._responceMethod({ title: 'Пользователь успешно зарегистрирован!', responseElement: this.responseLink });
+        this.responseMethod({ title: 'Пользователь успешно зарегистрирован!', responseElement: this.responseLink });
       }
     });
   }

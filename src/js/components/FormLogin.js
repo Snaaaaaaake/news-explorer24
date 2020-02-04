@@ -6,6 +6,7 @@ export default class FormLogin extends Form {
     super();
     this.domElement = this._createDomElement();
     this.responseError = this.domElement.querySelector('.form__input_response-error');
+    this.footerLink = this.domElement.querySelector('.form__footer_link_reg');
     this.formButton = this.domElement.querySelector('.form__button');
     this.form = this.domElement.querySelector('.form');
     this.form.addEventListener('keyup', this._validateInputElement.bind(this));

@@ -9,9 +9,11 @@ export default class Form {
     this.form.querySelector('.form__button').classList.remove('form__button_is-active');
   }
 
+  // После создания зависимых друг от друга экземпляров кслассов,
+  // дополнительно связываем их друг с другом, передавая нужные методы
   setLinkHandler(handler) {
     this.linkHandler = handler;
-    this.domElement.querySelector('.form__footer_link').addEventListener('click', this.linkHandler);
+    this.footerLink.addEventListener('click', this.linkHandler);
   }
 
   setResponseMethod(method) {
@@ -36,6 +38,7 @@ export default class Form {
     }
   }
 
+  // Валижация по сабмиту
   _validateForm(event) {
     event.preventDefault();
     let counter = 0;
@@ -53,13 +56,5 @@ export default class Form {
     if (counter === inputs.length) {
       this._fetch();
     }
-  }
-
-  _fetch() {
-    console.log(this.domElement);
-  }
-
-  _responceMethod(data) {
-    this.responseMethod(data);
   }
 }
