@@ -1,6 +1,7 @@
 import mainApi from '../api/MainApi';
 import articleFavoriteIcon from '../constants/articleFavoriteIcon';
 import articleDeleteIcon from '../constants/articleDeleteIcon';
+import createSingleDomElement from '../utils/createSingleDomElement';
 
 const moment = require('moment');
 
@@ -22,9 +23,6 @@ export default class NewsCard {
     this.keywordContainer = this.domElement.querySelector('.article__keyword');
     this.keywordContainer.textContent = this.keyword;
     this.favoritesButton = this.domElement.querySelector('.article__favorites-button');
-    // исправить!
-    this.favoritesButton.appendChild(articleFavoriteIcon.cloneNode(true));
-    //
     this.helpContainer = this.domElement.querySelector('.article__help');
     // Залогинен ли?
     if (isUserLoggedIn) {
@@ -41,24 +39,26 @@ export default class NewsCard {
   }
 
   _createDomElement() {
-    const domElement = document.createElement('article');
-    domElement.classList.add('article');
-    domElement.innerHTML = `
-      <div class="article__favorites-button article__svg-icon_container"></div>
-      <div class="article__keyword element_disabled" title="Ключевое слово данной статьи"></div>
-      <div class="article__help">Войдите, чтобы сохранять статьи</div>
-      <div class="article__picture" style="background: url(${this.image}) center no-repeat"></div>
-      <div class="article__information">
-        <a href="${this.url}" target="_blank" class="article__link" title="Читать полную версию статьи">
-          <div class="article__information_block">
-            <time class="article__date" datetime="${this.date}">${moment(this.date).format('LL')}</time>
-            <h5 class="article__title">${this.title}</h5>
-            <p class="article__description">${this.description}</p>
-          </div>
-          <p class="article__source">${this.source}</p>
-        </a>
-      </div>
-    `;
+    const domElement = createSingleDomElement('article', 'article', [
+      createSingleDomElement('div', ['article__favorites-button', 'article__svg-icon_container'], articleFavoriteIcon.cloneNode(true)),
+      createSingleDomElement('div', ['article__keyword', 'element_disabled'], '', { name: 'title', value: 'Ключевое слово данной статьи' }),
+      createSingleDomElement('div', 'article__help', 'Войдите, чтобы сохранять статьи'),
+      createSingleDomElement('div', 'article__picture', '', { name: 'style', value: `background: url(${encodeURI(this.image)}) center no-repeat` }),
+      createSingleDomElement('div', 'article__information', [
+        createSingleDomElement('a', 'article__link', [
+          createSingleDomElement('div', 'article__information_block', [
+            createSingleDomElement('time', 'article__date', moment(this.date).format('LL'), { name: 'datetime', value: 'this.date' }),
+            createSingleDomElement('h5', 'article__title', this.title),
+            createSingleDomElement('p', 'article__description', this.description),
+          ]),
+          createSingleDomElement('p', 'article__source', this.source),
+        ], [
+          { name: 'href', value: encodeURI(this.url) },
+          { name: 'target', value: '_blank' },
+          { name: 'title', value: 'Читать полную версию статьи' },
+        ]),
+      ]),
+    ]);
     return domElement;
   }
 

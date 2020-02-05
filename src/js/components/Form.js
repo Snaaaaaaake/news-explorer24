@@ -24,7 +24,7 @@ export default class Form {
     // Обработка отдельного инпута при нажатии клавиатуры с выводом ошибки
     if (event.target.classList.contains('form__input')) {
       const { isValid, message } = inputValidation(event.target);
-      const errorContainer = event.target.nextSibling.nextSibling;
+      const errorContainer = event.target.nextSibling;
       if (!isValid) {
         errorContainer.textContent = message;
       } else {
@@ -45,7 +45,7 @@ export default class Form {
     const inputs = this.form.querySelectorAll('.form__input');
     inputs.forEach((item) => {
       const { isValid, message } = inputValidation(item);
-      const errorContainer = item.nextSibling.nextSibling;
+      const errorContainer = item.nextSibling;
       if (!isValid) {
         errorContainer.textContent = message;
       } else {

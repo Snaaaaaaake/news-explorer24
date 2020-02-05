@@ -110,9 +110,7 @@ export default class MainMenu {
   }
 
   _createOverlay() {
-    const overlay = document.createElement('div');
-    overlay.classList.add('overlay');
-    overlay.classList.add('element_disabled');
+    const overlay = createSingleDomElement('div', ['overlay', 'element_disabled']);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => {
       this.sliderToggle();

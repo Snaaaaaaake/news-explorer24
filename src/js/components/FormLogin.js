@@ -1,5 +1,6 @@
 import Form from './Form';
 import mainApi from '../api/MainApi';
+import createSingleDomElement from '../utils/createSingleDomElement';
 
 export default class FormLogin extends Form {
   constructor() {
@@ -8,6 +9,8 @@ export default class FormLogin extends Form {
     this.responseError = this.domElement.querySelector('.form__input_response-error');
     this.footerLink = this.domElement.querySelector('.form__footer_link_reg');
     this.formButton = this.domElement.querySelector('.form__button');
+    this.emailInput = this.domElement.querySelector('.form__input_email');
+    this.passwordInput = this.domElement.querySelector('.form__input_password');
     this.form = this.domElement.querySelector('.form');
     this.form.addEventListener('keyup', this._validateInputElement.bind(this));
     this.form.addEventListener('submit', this._validateForm.bind(this));
@@ -15,9 +18,7 @@ export default class FormLogin extends Form {
 
   _fetch() {
     this.formButton.setAttribute('disabled', 'disabled');
-    const email = this.domElement.querySelector('.form__input_email').value;
-    const password = this.domElement.querySelector('.form__input_password').value;
-    mainApi.userLogin(email, password).then((res) => {
+    mainApi.userLogin(this.emailInput.value, this.passwordInput.value).then((res) => {
       this.formButton.removeAttribute('disabled');
       if (res.statusCode) {
         this.responseError.textContent = res.message;
@@ -28,23 +29,35 @@ export default class FormLogin extends Form {
   }
 
   _createDomElement() {
-    const domElement = document.createElement('div');
-    domElement.innerHTML = `
-    <form name="formLogin" class="form form__login" novalidate>
-    <label for="formLoginEmail" class="form__label">Email</label>
-    <input type="text" id="formLoginEmail" name="formLoginEmail" class="form__input form__input_email form-element" placeholder="Введите почту">
-    <p class="form__input_error"></p>
-    <label for="formLoginPassword" class="form__label">Пароль</label>
-    <input type="password" id="formLoginPassword" name="formLoginPassword" class="form__input form__input_password form-element" placeholder="Введите пароль">
-    <p class="form__input_error"></p>
-    <p class="form__input_response-error"></p>
-    <button class="form__button form-element" type="submit">Войти</button>
-    </form>
-    <p class="form__footer">
-      или
-      <button class="form__footer_link form__footer_link_reg">Зарегистрироваться</button>
-    </p>
-  `;
+    const domElement = createSingleDomElement('div', 'form__container', [
+      createSingleDomElement('form', ['form', 'form__login'], [
+        createSingleDomElement('label', 'form__label', 'Email', { name: 'for', value: 'formLoginEmail' }),
+        createSingleDomElement('input', ['form__input', 'form__input_email', 'form-element'], '', [
+          { name: 'id', value: 'formLoginEmail' },
+          { name: 'type', value: 'text' },
+          { name: 'name', value: 'formLoginEmail' },
+          { name: 'placeholder', value: 'Введите почту' },
+        ]),
+        createSingleDomElement('p', 'form__input_error'),
+        createSingleDomElement('label', 'form__label', 'Пароль', { name: 'for', value: 'formLoginPassword' }),
+        createSingleDomElement('input', ['form__input', 'form__input_password', 'form-element'], '', [
+          { name: 'id', value: 'formLoginPassword' },
+          { name: 'type', value: 'password' },
+          { name: 'name', value: 'formLoginPassword' },
+          { name: 'placeholder', value: 'Введите пароль' },
+        ]),
+        createSingleDomElement('p', 'form__input_error'),
+        createSingleDomElement('p', 'form__input_response-error'),
+        createSingleDomElement('button', ['form__button', 'form-element'], 'Войти', { name: 'type', value: 'submit' }),
+      ], [
+        { name: 'name', value: 'formLogin' },
+        { name: 'novalidate', value: true },
+      ]),
+      createSingleDomElement('p', 'form__footer', [
+        createSingleDomElement('span', 'form__footer_span', 'или '),
+        createSingleDomElement('button', ['form__footer_link', 'form__footer_link_reg'], 'Зарегистрироваться'),
+      ]),
+    ]);
     return domElement;
   }
 }

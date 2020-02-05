@@ -11,7 +11,9 @@ function createSingleDomElement(tag, classs, content, attributes) {
   }
   if (content) {
     if (typeof content === 'string') {
-      element.textContent = content;
+      if (content.length > 0) {
+        element.textContent = content;
+      }
     } else if (content.length) {
       content.forEach((item) => {
         element.appendChild(item);
