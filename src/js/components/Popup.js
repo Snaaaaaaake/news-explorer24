@@ -2,30 +2,30 @@ import createSingleDomElement from '../utils/createSingleDomElement';
 
 export default class Popup {
   constructor() {
-    this.domElement = this._createDomElement();
-    this.title = this.domElement.querySelector('.popup__title');
-    this.contentContainer = this.domElement.querySelector('.popup__content');
-    this.responceContainer = createSingleDomElement('div', 'popup__responce');
-    this.responceRender = this.responceRender.bind(this);
-    this.overlay = this._createOverlay();
+    this._domElement = this._createDomElement();
+    this._title = this._domElement.querySelector('.popup__title');
+    this._contentContainer = this._domElement.querySelector('.popup__content');
+    this._responceContainer = createSingleDomElement('div', 'popup__responce');
+    this._overlay = this._createOverlay();
     this._escapeEventListener = this._escapeEventListener.bind(this);
+    this.responceRender = this.responceRender.bind(this);
   }
 
   open(title, content) {
     content.clear();
-    while (this.contentContainer.firstChild) {
-      this.contentContainer.removeChild(this.contentContainer.firstChild);
+    while (this._contentContainer.firstChild) {
+      this._contentContainer.removeChild(this._contentContainer.firstChild);
     }
-    this.title.textContent = title;
-    this.contentContainer.appendChild(content.domElement);
-    this.domElement.classList.remove('element_disabled');
-    this.overlay.classList.remove('element_disabled');
+    this._title.textContent = title;
+    this._contentContainer.appendChild(content.domElement);
+    this._domElement.classList.remove('element_disabled');
+    this._overlay.classList.remove('element_disabled');
     document.addEventListener('keydown', this._escapeEventListener);
   }
 
   close() {
-    this.domElement.classList.add('element_disabled');
-    this.overlay.classList.add('element_disabled');
+    this._domElement.classList.add('element_disabled');
+    this._overlay.classList.add('element_disabled');
     document.removeEventListener('keydown', this._escapeEventListener);
   }
 
@@ -36,13 +36,13 @@ export default class Popup {
   }
 
   responceRender(data) {
-    while (this.contentContainer.firstChild) {
-      this.contentContainer.removeChild(this.contentContainer.firstChild);
+    while (this._contentContainer.firstChild) {
+      this._contentContainer.removeChild(this._contentContainer.firstChild);
     }
     const { title, responseElement } = data;
-    this.title.textContent = title;
-    this.responceContainer.appendChild(responseElement);
-    this.contentContainer.appendChild(this.responceContainer);
+    this._title.textContent = title;
+    this._responceContainer.appendChild(responseElement);
+    this._contentContainer.appendChild(this._responceContainer);
   }
 
   _createDomElement() {

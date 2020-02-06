@@ -5,17 +5,16 @@ import FormLogin from './components/FormLogin';
 import NewsCard from './components/NewsCard';
 import MainMenu from './components/MainMenu';
 import mainApi from './api/MainApi';
-import FavoriteCardList from './components/FavoriteCardList';
+import FavoritesCardList from './components/FavoritesCardList';
+import FavoritesMenu from './components/FavoritesMenu';
 import siteHref from './constants/siteHref';
 
 const formLogin = new FormLogin();
 const formRegistration = new FormRegistration();
 const popup = new Popup();
 const mainMenu = new MainMenu(document.querySelector('.header__main-menu-container'));
-const favoriteCardList = new FavoriteCardList(
-  document.querySelector('.search-results'),
-  document.querySelector('.favorites'),
-);
+const favoritesMenu = new FavoritesMenu(document.querySelector('.favorites'));
+const favoritesCardList = new FavoritesCardList(document.querySelector('.search-results'));
 let isUserLoggedIn;
 const favoritesPageUserNameElement = document.querySelector('.favorites__username');
 
@@ -33,7 +32,8 @@ formRegistration.setResponseMethod(popup.responceRender);
 // проверка логин
 mainApi.getUser().then((res) => {
   if (res.statusCode) {
-    document.location.href = `${siteHref}`;
+    // Есили незалогинен и приходит ошибка, то переадресация на главную
+    document.location.href = siteHref;
   } else {
     mainMenu.userMenuRender(res.name);
     favoritesPageUserNameElement.textContent = res.name;
@@ -41,9 +41,10 @@ mainApi.getUser().then((res) => {
     mainApi.getUserArticles().then((data) => {
       if (data.length > 0) {
         const newsCardsArray = data.map((item) => new NewsCard(item, isUserLoggedIn));
-        favoriteCardList.addCards(newsCardsArray);
+        favoritesCardList.render(newsCardsArray);
+        favoritesMenu.render(newsCardsArray);
       } else {
-        favoriteCardList.renderError();
+        favoritesCardList.renderError();
       }
     });
   }

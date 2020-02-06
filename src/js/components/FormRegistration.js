@@ -5,33 +5,31 @@ import createSingleDomElement from '../utils/createSingleDomElement';
 export default class FormRegistration extends Form {
   constructor() {
     super();
-    this.domElement = this._createDomElement();
-    this.responseLink = createSingleDomElement('button', ['form__footer_link', 'form__footer_responce-link'], 'Выполнить вход');
-    this.responseError = this.domElement.querySelector('.form__input_response-error');
-    this.footerLink = this.domElement.querySelector('.form__footer_link_login');
-    this.formButton = this.domElement.querySelector('.form__button');
-    this.emailInput = this.domElement.querySelector('.form__input_email');
-    this.passwordInput = this.domElement.querySelector('.form__input_password');
-    this.nameInput = this.domElement.querySelector('.form__input_name');
-    this.form = this.domElement.querySelector('.form');
-    this.form.addEventListener('keyup', this._validateInputElement.bind(this));
-    this.form.addEventListener('submit', this._validateForm.bind(this));
+    this._responseLink = createSingleDomElement('button', ['form__footer_link', 'form__footer_responce-link'], 'Выполнить вход');
+    this._footerLink = this.domElement.querySelector('.form__footer_link_login');
+    this._nameInput = this.domElement.querySelector('.form__input_name');
+    this._responseMethod = null;
   }
 
   setLinkHandler(handler) {
     super.setLinkHandler(handler);
-    this.responseLink.addEventListener('click', this.linkHandler);
+    this._responseLink.addEventListener('click', this._linkHandler);
+  }
+
+  setResponseMethod(method) {
+    this._responseMethod = method;
   }
 
   _fetch() {
-    this.formButton.setAttribute('disabled', 'disabled');
-    mainApi.userCreate(this.nameInput.value, this.emailInput.value, this.passwordInput.value)
+    this._formButton.setAttribute('disabled', 'disabled');
+    mainApi.userCreate(this._nameInput.value, this._emailInput.value, this._passwordInput.value)
       .then((res) => {
-        this.formButton.removeAttribute('disabled');
+        this._formButton.removeAttribute('disabled');
         if (res.statusCode) {
-          this.responseError.textContent = res.message;
+          // Если есть статус ошибки, значит выводим сообщение об ошибке
+          this._responseError.textContent = res.message;
         } else {
-          this.responseMethod({ title: 'Пользователь успешно зарегистрирован!', responseElement: this.responseLink });
+          this._responseMethod({ title: 'Пользователь успешно зарегистрирован!', responseElement: this._responseLink });
         }
       });
   }

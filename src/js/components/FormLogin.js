@@ -5,23 +5,16 @@ import createSingleDomElement from '../utils/createSingleDomElement';
 export default class FormLogin extends Form {
   constructor() {
     super();
-    this.domElement = this._createDomElement();
-    this.responseError = this.domElement.querySelector('.form__input_response-error');
-    this.footerLink = this.domElement.querySelector('.form__footer_link_reg');
-    this.formButton = this.domElement.querySelector('.form__button');
-    this.emailInput = this.domElement.querySelector('.form__input_email');
-    this.passwordInput = this.domElement.querySelector('.form__input_password');
-    this.form = this.domElement.querySelector('.form');
-    this.form.addEventListener('keyup', this._validateInputElement.bind(this));
-    this.form.addEventListener('submit', this._validateForm.bind(this));
+    this._footerLink = this.domElement.querySelector('.form__footer_link_reg');
   }
 
   _fetch() {
-    this.formButton.setAttribute('disabled', 'disabled');
-    mainApi.userLogin(this.emailInput.value, this.passwordInput.value).then((res) => {
-      this.formButton.removeAttribute('disabled');
+    this._formButton.setAttribute('disabled', 'disabled');
+    mainApi.userLogin(this._emailInput.value, this._passwordInput.value).then((res) => {
+      this._formButton.removeAttribute('disabled');
       if (res.statusCode) {
-        this.responseError.textContent = res.message;
+        // Если есть статус ошибки, значит выводим сообщение об ошибке
+        this._responseError.textContent = res.message;
       } else {
         document.location.reload(true);
       }
@@ -35,6 +28,7 @@ export default class FormLogin extends Form {
         createSingleDomElement('input', ['form__input', 'form__input_email', 'form-element'], '', [
           { name: 'id', value: 'formLoginEmail' },
           { name: 'type', value: 'text' },
+          { name: 'autocomplete', value: 'username' },
           { name: 'name', value: 'formLoginEmail' },
           { name: 'placeholder', value: 'Введите почту' },
         ]),
@@ -43,6 +37,7 @@ export default class FormLogin extends Form {
         createSingleDomElement('input', ['form__input', 'form__input_password', 'form-element'], '', [
           { name: 'id', value: 'formLoginPassword' },
           { name: 'type', value: 'password' },
+          { name: 'autocomplete', value: 'current-password' },
           { name: 'name', value: 'formLoginPassword' },
           { name: 'placeholder', value: 'Введите пароль' },
         ]),
