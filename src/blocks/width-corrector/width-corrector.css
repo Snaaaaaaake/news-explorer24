@@ -1,15 +1,18 @@
 .width-corrector {
-  padding:0 7.5% 0 7.5%;
+  padding-left: 7.5%;
+  padding-right: 7.5%;
 }
 
 @media (max-width:1279px) {
   .width-corrector {
-    padding:0 5.2% 0 5.2%;
+    padding-left: 5.2%;
+    padding-right: 5.2%;
   }
 }
 
 @media (max-width:600px) {
   .width-corrector {
-    padding:0 16px 0 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

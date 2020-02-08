@@ -1,11 +1,11 @@
-import createSingleDomElement from '../utils/createSingleDomElement';
+import elementsConstructor from '../../js/utils/elementsConstructor';
 
 export default class Popup {
   constructor() {
     this._domElement = this._createDomElement();
     this._title = this._domElement.querySelector('.popup__title');
     this._contentContainer = this._domElement.querySelector('.popup__content');
-    this._responceContainer = createSingleDomElement('div', 'popup__responce');
+    this._responceContainer = elementsConstructor('div', 'popup__responce');
     this._overlay = this._createOverlay();
     this._escapeEventListener = this._escapeEventListener.bind(this);
     this.responceRender = this.responceRender.bind(this);
@@ -46,10 +46,10 @@ export default class Popup {
   }
 
   _createDomElement() {
-    const domElement = createSingleDomElement('div', ['popup', 'element_disabled'], [
-      createSingleDomElement('div', 'popup__close'),
-      createSingleDomElement('h6', 'popup__title'),
-      createSingleDomElement('div', 'popup__content'),
+    const domElement = elementsConstructor('div', ['popup', 'element_disabled'], [
+      elementsConstructor('div', 'popup__close'),
+      elementsConstructor('h6', 'popup__title'),
+      elementsConstructor('div', 'popup__content'),
     ]);
     domElement.querySelector('.popup__close').addEventListener('click', () => {
       this.close();
@@ -59,7 +59,7 @@ export default class Popup {
   }
 
   _createOverlay() {
-    const overlay = createSingleDomElement('div', ['overlay', 'element_disabled']);
+    const overlay = elementsConstructor('div', ['overlay', 'element_disabled']);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => {
       this.close();

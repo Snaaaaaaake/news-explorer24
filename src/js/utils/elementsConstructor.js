@@ -1,4 +1,4 @@
-function createSingleDomElement(tag, classs, content, attributes) {
+function elementsConstructor(tag, classs, content, attributes) {
   const element = document.createElement(tag);
   if (classs) {
     if (typeof classs === 'object' && classs.length) {
@@ -39,4 +39,4 @@ function createSingleDomElement(tag, classs, content, attributes) {
   }
   return element;
 }
-export default createSingleDomElement;
+export default elementsConstructor;

@@ -11,58 +11,14 @@
 <body class="body">
   <div class="content">
     <header class="header header_white">
-      <div class="header__main-menu-container"></div>
+      <nav class="main-menu"></nav>
     </header>
     <main class="main">
-      <section class="favorites">
-          <div class="width-corrector">
-          <h1 class="favorites__title">Сохраненные статьи</h1>
-          <h2 class="favorites__subtitle"><span class="favorites__username">Username</span>, у вас <span class="favorites__sum">пока нет сохранённых статей</span></h2>
-          <p class="favorites__keywords-container">По ключевым словам: <span class="favorites__keywords">отсутствуют</span></p>
-        </div>
-      </section>
-      <section class="search-results">
-        <div class="width-corrector">
-          <div class="search-results__container">
-            <div class="search-results__content"></div>
-          </div>
-          <div class="search-results__preloader">
-            <div class="preloader"></div>
-            <h6 class="preloader_text">Идет поиск новостей...</h6>
-          </div>
-          <div class="search-results__error element_disabled">
-            <img src="../<%=require('./images/search-results__error_icon.png').default%>" alt="Ничего не найдено" class="search-results__error">
-            <p class="search-results__error_title">Вы ещё не добавили в избранное ни одной статьи</p>
-          </div>
-        </div>
-      </section>
+      <section class="favorites"></section>
+      <section class="search-results"></section>
     </main>
   </div>
-  <footer class="footer">
-      <div class="width-corrector footer_container">
-        <div class="footer__element">
-          <p class="footer__copyright">&#169; News-Explorer24.ru, Powered by News API</p>
-        </div>
-        <div class="footer__element">
-          <a class="footer__link footer__link_main" href="../" >Главная</a>
-          <a class="footer__link" href="https://praktikum.yandex.ru/" target="_blank">Яндекс.Практикум</a>
-        </div>
-        <div class="footer__element">
-          <a class="footer__link footer__link_icon" target="_blank" href="https://github.com/Snaaaaaaake" >
-            <picture>
-              <source srcset="../<%=require('./images/footer__icon_github.svg').default%>">
-              <img src="../<%=require('./images/footer__icon_github.png').default%>" alt="Ссылка на GitHub" title="Ссылка на GitHub" class="footer__icon">
-            </picture>
-          </a>
-          <a class="footer__link footer__link_icon" target="_blank" href="https://www.facebook.com/miroslav.pochapskiy" >
-            <picture>
-              <source srcset="../<%=require('./images/footer__icon_facebook.svg').default%>">
-              <img src="../<%=require('./images/footer__icon_facebook.png').default%>" alt="Ссылка на GitHub" title="Ссылка на GitHub" class="footer__icon">
-            </picture>
-          </a>
-        </div>
-      </div>
-  </footer>
+  <footer class="footer"></footer>
   <script src="<%= htmlWebpackPlugin.files.chunks.favorites.entry %>"></script>
 </body>
 </html>

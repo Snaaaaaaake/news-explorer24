@@ -1,4 +1,4 @@
-import inputValidation from '../utils/inputValidation';
+import inputValidation from '../../js/utils/inputValidation';
 
 export default class Form {
   constructor() {

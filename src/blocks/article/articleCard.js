@@ -1,7 +1,7 @@
-import mainApi from '../api/MainApi';
-import articleFavoriteIcon from '../constants/articleFavoriteIcon';
-import articleDeleteIcon from '../constants/articleDeleteIcon';
-import createSingleDomElement from '../utils/createSingleDomElement';
+import mainApi from '../../js/api/MainApi';
+import articleFavoriteIcon from './articleFavoriteIcon';
+import articleDeleteIcon from './articleDeleteIcon';
+import elementsConstructor from '../../js/utils/elementsConstructor';
 
 const moment = require('moment');
 
@@ -38,19 +38,19 @@ export default class NewsCard {
   }
 
   _createDomElement() {
-    const domElement = createSingleDomElement('article', 'article', [
-      createSingleDomElement('div', ['article__favorites-button', 'article__svg-icon_container'], articleFavoriteIcon.cloneNode(true)),
-      createSingleDomElement('div', ['article__keyword', 'element_disabled'], '', { name: 'title', value: 'Ключевое слово данной статьи' }),
-      createSingleDomElement('div', 'article__help', 'Войдите, чтобы сохранять статьи'),
-      createSingleDomElement('div', 'article__picture', '', { name: 'style', value: `background: url(${encodeURI(this._image)}) center no-repeat` }),
-      createSingleDomElement('div', 'article__information', [
-        createSingleDomElement('a', 'article__link', [
-          createSingleDomElement('div', 'article__information_block', [
-            createSingleDomElement('time', 'article__date', moment(this._date).format('LL'), { name: 'datetime', value: 'this._date' }),
-            createSingleDomElement('h5', 'article__title', this._title),
-            createSingleDomElement('p', 'article__description', this._description),
+    const domElement = elementsConstructor('article', 'article', [
+      elementsConstructor('div', ['article__favorites-button', 'article__svg-icon_container'], articleFavoriteIcon.cloneNode(true)),
+      elementsConstructor('div', ['article__keyword', 'element_disabled'], '', { name: 'title', value: 'Ключевое слово данной статьи' }),
+      elementsConstructor('div', 'article__help', 'Войдите, чтобы сохранять статьи'),
+      elementsConstructor('div', 'article__picture', '', { name: 'style', value: `background: url(${encodeURI(this._image)}) center no-repeat` }),
+      elementsConstructor('div', 'article__information', [
+        elementsConstructor('a', 'article__link', [
+          elementsConstructor('div', 'article__information_block', [
+            elementsConstructor('time', 'article__date', moment(this._date).format('LL'), { name: 'datetime', value: 'this._date' }),
+            elementsConstructor('h5', 'article__title', this._title),
+            elementsConstructor('p', 'article__description', this._description),
           ]),
-          createSingleDomElement('p', 'article__source', this._source),
+          elementsConstructor('p', 'article__source', this._source),
         ], [
           { name: 'href', value: encodeURI(this._url) },
           { name: 'target', value: '_blank' },

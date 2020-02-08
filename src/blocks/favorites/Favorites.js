@@ -1,10 +1,29 @@
-export default class FavoritesMenu {
-  constructor(domElement) {
-    this._domElement = domElement;
+import elementsConstructor from '../../js/utils/elementsConstructor';
+
+export default class Favorites {
+  constructor(parentElement) {
+    this._domElement = this._createDomElement();
+    parentElement.appendChild(this._domElement);
     this._keysContainer = this._domElement.querySelector('.favorites__keywords');
     this._favoritesSumContainer = this._domElement.querySelector('.favorites__sum');
     this._keysArray = [];
     this._popularityArray = [];
+  }
+
+  _createDomElement() {
+    const domElement = elementsConstructor('div', ['favorites__container', 'width-corrector'], [
+      elementsConstructor('h1', 'favorites__title', 'Сохраненные статьи'),
+      elementsConstructor('h2', 'favorites__subtitle', [
+        elementsConstructor('span', 'favorites__username', 'Пользователь'),
+        elementsConstructor('span', 'favorites__text', ', у вас '),
+        elementsConstructor('span', 'favorites__sum', 'пока нет сохранённых статей'),
+      ]),
+      elementsConstructor('p', 'favorites__keywords-container', [
+        elementsConstructor('span', 'favorites__text', 'По ключевым словам: '),
+        elementsConstructor('span', 'favorites__keywords', 'отсутствуют'),
+      ]),
+    ]);
+    return domElement;
   }
 
   render(newsCardsArray) {

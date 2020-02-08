@@ -1,8 +1,8 @@
-import mainApi from '../api/MainApi';
-import logoutLinkIcon from '../constants/logoutLinkIcon';
-import siteHref from '../constants/siteHref';
-import createSingleDomElement from '../utils/createSingleDomElement';
-import { sliderButtonIconOpen, sliderButtonIconClose } from '../constants/sliderButtonIcons';
+import mainApi from '../../js/api/MainApi';
+import logoutLinkIcon from './mainMenuLogoutLinkIcon';
+import mainPageLink from '../../js/constants/mainPageLink';
+import elementsConstructor from '../../js/utils/elementsConstructor';
+import { sliderButtonIconOpen, sliderButtonIconClose } from './mainMenuSliderButtonIcons';
 
 export default class MainMenu {
   constructor(parentElement) {
@@ -35,31 +35,30 @@ export default class MainMenu {
   }
 
   _createDomElement() {
-    const domElement = createSingleDomElement('nav', 'main-menu',
-      createSingleDomElement('div', ['main-menu__container', 'width-corrector'], [
-        createSingleDomElement('div', 'main-menu__link-container',
-          createSingleDomElement('a', ['main-menu__link', 'main-menu__logo-link'], 'NewsExplorer24', [
-            { name: 'title', value: 'Агрегатор новостей NewsExplorer24' },
-            { name: 'href', value: siteHref },
-          ])),
-        createSingleDomElement('div', ['main-menu__link-container', 'main-menu__link-container_slider'],
-          createSingleDomElement('button', 'main-menu__slider-button', [
-            sliderButtonIconOpen,
-            sliderButtonIconClose,
-          ], { name: 'title', value: 'Показать меню' })),
-        createSingleDomElement('div', ['main-menu__link-container', 'main-menu__slider', 'main-menu__slider_hidden'], [
-          createSingleDomElement('a', ['main-menu__link', 'main-menu__main-page-link'], 'Главная', [
-            { name: 'title', value: 'На главную' },
-            { name: 'href', value: siteHref },
-          ]),
-          createSingleDomElement('a', ['main-menu__link', 'main-menu__favorites-link', 'element_disabled'], 'Сохраненные статьи', [
-            { name: 'title', value: 'Страница ваших сохраненных статей' },
-            { name: 'href', value: `${siteHref}favorites` },
-          ]),
-          createSingleDomElement('button', ['main-menu__link', 'main-menu__link-oval', 'main-menu__autorisation-link', 'element_disabled'], 'Авторизоваться', { name: 'title', value: 'Авторизоваться' }),
-          createSingleDomElement('button', ['main-menu__link', 'main-menu__link-oval', 'main-menu__logout-link', 'element_disabled'], '', { name: 'title', value: 'Выйти' }),
+    const domElement = elementsConstructor('div', ['main-menu__container', 'width-corrector'], [
+      elementsConstructor('div', 'main-menu__link-container',
+        elementsConstructor('a', ['main-menu__link', 'main-menu__logo-link'], 'NewsExplorer24', [
+          { name: 'title', value: 'Агрегатор новостей NewsExplorer24' },
+          { name: 'href', value: mainPageLink },
+        ])),
+      elementsConstructor('div', ['main-menu__link-container', 'main-menu__link-container_slider'],
+        elementsConstructor('button', 'main-menu__slider-button', [
+          sliderButtonIconOpen,
+          sliderButtonIconClose,
+        ], { name: 'title', value: 'Показать меню' })),
+      elementsConstructor('div', ['main-menu__link-container', 'main-menu__slider', 'main-menu__slider_hidden'], [
+        elementsConstructor('a', ['main-menu__link', 'main-menu__main-page-link'], 'Главная', [
+          { name: 'title', value: 'На главную' },
+          { name: 'href', value: mainPageLink },
         ]),
-      ]));
+        elementsConstructor('a', ['main-menu__link', 'main-menu__favorites-link', 'element_disabled'], 'Сохраненные статьи', [
+          { name: 'title', value: 'Страница ваших сохраненных статей' },
+          { name: 'href', value: `${mainPageLink}favorites` },
+        ]),
+        elementsConstructor('button', ['main-menu__link', 'main-menu__link-oval', 'main-menu__autorisation-link', 'element_disabled'], 'Авторизоваться', { name: 'title', value: 'Авторизоваться' }),
+        elementsConstructor('button', ['main-menu__link', 'main-menu__link-oval', 'main-menu__logout-link', 'element_disabled'], '', { name: 'title', value: 'Выйти' }),
+      ]),
+    ]);
     return domElement;
   }
 
@@ -110,7 +109,7 @@ export default class MainMenu {
   }
 
   _createOverlay() {
-    const overlay = createSingleDomElement('div', ['overlay', 'element_disabled']);
+    const overlay = elementsConstructor('div', ['overlay', 'element_disabled']);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => {
       this.sliderToggle();

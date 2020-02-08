@@ -1,16 +1,23 @@
-export default class NewsCardList {
-  constructor(domElement) {
-    this._domElement = domElement;
+import SearchResults from './SearchResults';
+import elementsConstructor from '../../js/utils/elementsConstructor';
+
+export default class NewsCardList extends SearchResults {
+  constructor(parentElement) {
+    super(parentElement);
+    this._modifyDomElement();
     this._newsCardsArray = [];
-    this._searchResiltsContainer = this._domElement.querySelector('.search-results__container');
-    this._searchResiltsContent = this._domElement.querySelector('.search-results__content');
-    this._searchResiltsError = this._domElement.querySelector('.search-results__error');
-    this._searchResiltsPreloader = this._domElement.querySelector('.search-results__preloader');
     this._addMoreButton = this._domElement.querySelector('.search-results__more-button');
     this._addMoreButton.addEventListener('click', (event) => {
       event.preventDefault();
       this._renderResults();
     });
+  }
+
+  _modifyDomElement() {
+    this._searchResiltsContainer.prepend(elementsConstructor('h2', 'search-results__title', 'Результаты поиска'));
+    this._searchResiltsContainer.appendChild(elementsConstructor('div', 'search-results__more-container', [
+      elementsConstructor('buttom', 'search-results__more-button', 'Показать еще', { name: 'title', value: 'Загрузить ещё результаты' }),
+    ]));
   }
 
   _clearResults() {
@@ -34,12 +41,6 @@ export default class NewsCardList {
     if (this._newsCardsArray.length === 0) {
       this._addMoreButton.classList.add('element_disabled');
     }
-  }
-
-  renderError() {
-    this._searchResiltsPreloader.classList.add('element_disabled');
-    this._searchResiltsContainer.classList.add('element_disabled');
-    this._searchResiltsError.classList.remove('element_disabled');
   }
 
   renderLoader() {
