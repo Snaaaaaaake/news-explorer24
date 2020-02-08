@@ -1,11 +1,11 @@
 import SearchResults from './SearchResults';
 import elementsConstructor from '../../js/utils/elementsConstructor';
 
-export default class NewsCardList extends SearchResults {
+export default class ArticleCardList extends SearchResults {
   constructor(parentElement) {
     super(parentElement);
     this._modifyDomElement();
-    this._newsCardsArray = [];
+    this._articleCardsArray = [];
     this._addMoreButton = this._domElement.querySelector('.search-results__more-button');
     this._addMoreButton.addEventListener('click', (event) => {
       event.preventDefault();
@@ -21,7 +21,7 @@ export default class NewsCardList extends SearchResults {
   }
 
   _clearResults() {
-    this._newsCardsArray = [];
+    this._articleCardsArray = [];
     while (this._searchResiltsContent.firstChild) {
       this._searchResiltsContent.removeChild(this._searchResiltsContent.firstChild);
     }
@@ -33,12 +33,12 @@ export default class NewsCardList extends SearchResults {
     this._searchResiltsError.classList.add('element_disabled');
     this._addMoreButton.classList.remove('element_disabled');
     for (let i = 0; i < 3; i += 1) {
-      if (this._newsCardsArray.length > 0) {
-        this._searchResiltsContent.appendChild(this._newsCardsArray[0].domElement);
-        this._newsCardsArray.shift();
+      if (this._articleCardsArray.length > 0) {
+        this._searchResiltsContent.appendChild(this._articleCardsArray[0].domElement);
+        this._articleCardsArray.shift();
       }
     }
-    if (this._newsCardsArray.length === 0) {
+    if (this._articleCardsArray.length === 0) {
       this._addMoreButton.classList.add('element_disabled');
     }
   }
@@ -50,9 +50,9 @@ export default class NewsCardList extends SearchResults {
     this._searchResiltsError.classList.add('element_disabled');
   }
 
-  addCards(newsCardsArray) {
+  addCards(articleCardsArray) {
     this._clearResults();
-    this._newsCardsArray = newsCardsArray;
+    this._articleCardsArray = articleCardsArray;
     this._renderResults();
   }
 }

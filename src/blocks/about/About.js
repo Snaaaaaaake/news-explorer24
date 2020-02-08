@@ -1,13 +1,9 @@
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import BaseComponent from '../../js/components/BaseComponent';
 
 const aboutPhoto = require('../../images/about__photo.jpg').default;
 
-export default class About {
-  constructor(parentElement) {
-    this._domElement = this._createDomElement();
-    parentElement.appendChild(this._domElement);
-  }
-
+export default class About extends BaseComponent {
   _createDomElement() {
     const domElement = elementsConstructor('div', ['about__container', 'width-corrector'], [
       elementsConstructor('div', 'about__photo_container', [
@@ -23,5 +19,9 @@ export default class About {
       ]),
     ]);
     return domElement;
+  }
+
+  getWhite() {
+    this.style = 'У данного элемента нет стиля, но будет в будущем';
   }
 }

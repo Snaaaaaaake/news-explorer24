@@ -1,13 +1,13 @@
-import mainApi from '../../js/api/MainApi';
 import logoutLinkIcon from './mainMenuLogoutLinkIcon';
 import mainPageLink from '../../js/constants/mainPageLink';
 import elementsConstructor from '../../js/utils/elementsConstructor';
 import { sliderButtonIconOpen, sliderButtonIconClose } from './mainMenuSliderButtonIcons';
+import BaseComponent from '../../js/components/BaseComponent';
 
-export default class MainMenu {
-  constructor(parentElement) {
-    this._domElement = this._createDomElement();
-    parentElement.appendChild(this._domElement);
+export default class MainMenu extends BaseComponent {
+  constructor(parentElement, mainApi) {
+    super(parentElement);
+    this._mainApi = mainApi;
     this._sliderElement = this._domElement.querySelector('.main-menu__slider');
     this._overlay = this._createOverlay();
     this._sliderButton = this._domElement.querySelector('.main-menu__slider-button');
@@ -20,7 +20,7 @@ export default class MainMenu {
     this._autorisationLink = this._domElement.querySelector('.main-menu__autorisation-link');
     this._logoutLink = this._domElement.querySelector('.main-menu__logout-link');
     this._logoutLink.addEventListener('click', () => {
-      mainApi.userLogout().then(() => {
+      this._mainApi.userLogout().then(() => {
         document.location.reload(true);
       });
     });

@@ -1,23 +1,26 @@
 import '../pages/main.css';
-import Popup from '../blocks/popup/Popup';
-import FormRegistration from '../blocks/form/FormRegistration';
-import FormLogin from '../blocks/form/FormLogin';
+import MainApi from './api/MainApi';
+import mainApiAdress from './constants/mainApiAdress';
 import NewsApi from './api/NewsApi';
-import NewsCard from '../blocks/article/articleCard';
-import NewsCardList from '../blocks/search-results/NewsCardList';
+import newsApiToken from './constants/newsApiToken';
+import FormLogin from '../blocks/form/FormLogin';
+import FormRegistration from '../blocks/form/FormRegistration';
+import ArticleCard from '../blocks/article/articleCard';
+import Popup from '../blocks/popup/Popup';
+import ArticleCardList from '../blocks/search-results/ArticleCardList';
 import MainMenu from '../blocks/main-menu/MainMenu';
-import mainApi from './api/MainApi';
 import Footer from '../blocks/footer/Footer';
 import About from '../blocks/about/About';
 import Search from '../blocks/search/Search';
-import newsApiToken from './constants/newsApiToken';
 
-const formLogin = new FormLogin();
-const formRegistration = new FormRegistration();
-const popup = new Popup();
+
+const mainApi = new MainApi(mainApiAdress);
 const newsApi = new NewsApi(newsApiToken);
-const newsCardList = new NewsCardList(document.querySelector('.search-results'));
-const mainMenu = new MainMenu(document.querySelector('.main-menu'));
+const formLogin = new FormLogin(mainApi);
+const formRegistration = new FormRegistration(mainApi);
+const popup = new Popup(document.body);
+const articleCardList = new ArticleCardList(document.querySelector('.search-results'));
+const mainMenu = new MainMenu(document.querySelector('.main-menu'), mainApi);
 const footer = new Footer(document.querySelector('.footer'));
 const about = new About(document.querySelector('.about'));
 const search = new Search(document.querySelector('.search'));
@@ -36,20 +39,22 @@ formRegistration.setLinkHandler(popupLoginOpenHandler);
 formRegistration.setResponseMethod(popup.responceRender);
 
 // Обработчик поиска статей
+// Т.к. по условиям нам нельзя создавать экзепляры ксласса в другом классе, то вынес его сюда.
 search.form.addEventListener('submit', (event) => {
   event.preventDefault();
-  newsCardList.renderLoader();
+  articleCardList.renderLoader();
   const keyword = search.keywordInput.value;
   newsApi.getNews(keyword).then((data) => {
     if (data.articles.length === 0) {
-      newsCardList.renderError();
+      articleCardList.renderError();
     } else {
-      const newsCardsArray = data.articles.map((item) => new NewsCard(
+      const articleCardsArray = data.articles.map((item) => new ArticleCard(
+        mainApi,
         item,
         isUserLoggedIn,
         keyword,
       ));
-      newsCardList.addCards(newsCardsArray);
+      articleCardList.addCards(articleCardsArray);
     }
   });
 });
@@ -64,4 +69,7 @@ mainApi.getUser().then((res) => {
   }
 });
 
+// Рендерим стиль страницы
 mainMenu.getWhite();
+footer.getWhite();
+about.getWhite();

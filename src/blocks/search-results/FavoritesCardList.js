@@ -12,11 +12,11 @@ export default class FavoritesCardList extends SearchResults {
     this._domElement.querySelector('.search-results__error_title').textContent = 'Вы ещё не добавили в избранное ни одной статьи';
   }
 
-  render(newsCardsArray) {
+  render(articleCardsArray) {
     this._searchResiltsPreloader.classList.add('element_disabled');
     this._searchResiltsError.classList.add('element_disabled');
     this._searchResiltsContainer.classList.remove('element_disabled');
-    newsCardsArray.forEach((card) => {
+    articleCardsArray.forEach((card) => {
       this._searchResiltsContent.appendChild(card.domElement);
     });
   }

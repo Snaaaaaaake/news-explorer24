@@ -1,10 +1,9 @@
 import Form from './Form';
-import mainApi from '../../js/api/MainApi';
 import elementsConstructor from '../../js/utils/elementsConstructor';
 
 export default class FormRegistration extends Form {
-  constructor() {
-    super();
+  constructor(mainApi) {
+    super(mainApi);
     this._responseLink = elementsConstructor('button', ['form__footer_link', 'form__footer_responce-link'], 'Выполнить вход');
     this._footerLink = this.domElement.querySelector('.form__footer_link_login');
     this._nameInput = this.domElement.querySelector('.form__input_name');
@@ -23,7 +22,11 @@ export default class FormRegistration extends Form {
 
   _fetch() {
     this._formButton.setAttribute('disabled', 'disabled');
-    mainApi.userCreate(this._nameInput.value, this._emailInput.value, this._passwordInput.value)
+    this._mainApi.userCreate(
+      this._nameInput.value,
+      this._emailInput.value,
+      this._passwordInput.value,
+    )
       .then((res) => {
         this._formButton.removeAttribute('disabled');
         // Если есть статус ошибки, значит выводим сообщение об ошибке

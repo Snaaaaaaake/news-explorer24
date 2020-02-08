@@ -1,4 +1,4 @@
-class MainApi {
+export default class MainApi {
   constructor(url) {
     this.baseUrl = url;
     this.baseHeader = { 'Content-Type': 'application/json' };
@@ -85,5 +85,3 @@ class MainApi {
       .catch((err) => console.log(err));
   }
 }
-const mainApi = new MainApi('https://api.news-explorer24.ru');
-export default mainApi;

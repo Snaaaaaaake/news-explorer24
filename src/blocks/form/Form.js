@@ -1,14 +1,16 @@
 import inputValidation from '../../js/utils/inputValidation';
 
 export default class Form {
-  constructor() {
+  constructor(mainApi) {
     this.domElement = this._createDomElement();
+    this._mainApi = mainApi;
     this._responseError = this.domElement.querySelector('.form__input_response-error');
     this._formButton = this.domElement.querySelector('.form__button');
     this._emailInput = this.domElement.querySelector('.form__input_email');
     this._passwordInput = this.domElement.querySelector('.form__input_password');
     this._form = this.domElement.querySelector('.form');
-    this._form.addEventListener('keyup', this._validateInputElement.bind(this));
+    this._form.addEventListener('input', this._validateInputKeyPress.bind(this));
+    this._form.addEventListener('focusout', this._validateInputFocusout.bind(this));
     this._form.addEventListener('submit', this._validateForm.bind(this));
     this._linkHandler = null;
   }
@@ -21,15 +23,15 @@ export default class Form {
     this._formButton.classList.remove('form__button_is-active');
   }
 
-  // После создания зависимых друг от друга экземпляров кслассов,
+  // После создания зависимых друг от друга экземпляров кслассов
   // дополнительно связываем их друг с другом, передавая нужные методы
   setLinkHandler(handler) {
     this._linkHandler = handler;
     this._footerLink.addEventListener('click', this._linkHandler);
   }
 
-  _validateInputElement(event) {
-    // Обработка отдельного инпута при нажатии клавиатуры с выводом ошибки
+  _validateInputFocusout(event) {
+    // Обработка отдельного инпута при потере фокуса с выводом ошибки
     if (event.target.classList.contains('form__input')) {
       const { isValid, message } = inputValidation(event.target);
       const errorContainer = event.target.nextSibling;
@@ -39,6 +41,18 @@ export default class Form {
         errorContainer.textContent = '';
       }
     }
+  }
+
+  _validateInputKeyPress(event) {
+    // Обработка отдельного инпута при вводе без вывода ошибки и с обнулением предыдущей
+    if (event.target.classList.contains('form__input')) {
+      const { isValid } = inputValidation(event.target);
+      const errorContainer = event.target.nextSibling;
+      if (isValid) {
+        errorContainer.textContent = '';
+      }
+    }
+
     // Обработка всех инпутов для валидации кнопки
     const inputs = this._form.querySelectorAll('.form__input');
     if (Array.from(inputs).every((i) => inputValidation(i).isValid)) {
@@ -47,6 +61,7 @@ export default class Form {
       this._formButton.classList.remove('form__button_is-active');
     }
   }
+
 
   // Валижация по сабмиту
   _validateForm(event) {

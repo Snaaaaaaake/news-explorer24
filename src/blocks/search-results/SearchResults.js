@@ -1,11 +1,11 @@
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import BaseComponent from '../../js/components/BaseComponent';
 
 const errorIcon = require('../../images/search-results__error_icon.png').default;
 
-export default class SearchResults {
+export default class SearchResults extends BaseComponent {
   constructor(parentElement) {
-    this._domElement = this._createDomElement();
-    parentElement.appendChild(this._domElement);
+    super(parentElement);
     this._searchResiltsContainer = this._domElement.querySelector('.search-results__main-container');
     this._searchResiltsContent = this._domElement.querySelector('.search-results__content');
     this._searchResiltsPreloader = this._domElement.querySelector('.search-results__preloader');

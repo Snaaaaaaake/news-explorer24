@@ -1,8 +1,9 @@
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import BaseComponent from '../../js/components/BaseComponent';
 
-export default class Popup {
-  constructor() {
-    this._domElement = this._createDomElement();
+export default class Popup extends BaseComponent {
+  constructor(parentElement) {
+    super(parentElement);
     this._title = this._domElement.querySelector('.popup__title');
     this._contentContainer = this._domElement.querySelector('.popup__content');
     this._responceContainer = elementsConstructor('div', 'popup__responce');
@@ -54,7 +55,6 @@ export default class Popup {
     domElement.querySelector('.popup__close').addEventListener('click', () => {
       this.close();
     });
-    document.body.appendChild(domElement);
     return domElement;
   }
 

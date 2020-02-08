@@ -2,18 +2,14 @@
 import elementsConstructor from '../../js/utils/elementsConstructor';
 import mainPageLink from '../../js/constants/mainPageLink';
 import { facebookLink, githubLink } from '../../js/constants/about';
+import BaseComponent from '../../js/components/BaseComponent';
 
 const facebookIconSvg = require('../../images/footer__icon_facebook.svg').default;
 const githubIconSvg = require('../../images/footer__icon_github.svg').default;
 const facebookIconPng = require('../../images/footer__icon_facebook.png').default;
 const githubIconPng = require('../../images/footer__icon_github.png').default;
 
-export default class Footer {
-  constructor(parentElement) {
-    this._domElement = this._createDomElement();
-    parentElement.appendChild(this._domElement);
-  }
-
+export default class Footer extends BaseComponent {
   _createDomElement() {
     const domElement = elementsConstructor('div', ['width-corrector', 'footer_container'], [
       elementsConstructor('div', 'footer__element', [
@@ -56,5 +52,9 @@ export default class Footer {
       ]),
     ]);
     return domElement;
+  }
+
+  getWhite() {
+    this.style = 'У данного элемента нет стиля, но будет в будущем';
   }
 }

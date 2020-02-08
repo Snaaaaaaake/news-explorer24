@@ -1,4 +1,3 @@
-import mainApi from '../../js/api/MainApi';
 import articleFavoriteIcon from './articleFavoriteIcon';
 import articleDeleteIcon from './articleDeleteIcon';
 import elementsConstructor from '../../js/utils/elementsConstructor';
@@ -8,8 +7,9 @@ const moment = require('moment');
 moment().format();
 moment.locale('ru');
 
-export default class NewsCard {
-  constructor(data, isUserLoggedIn, keyword) {
+export default class ArticleCard {
+  constructor(mainApi, data, isUserLoggedIn, keyword) {
+    this._mainApi = mainApi;
     this._title = data.title;
     this._description = data.description;
     this._date = data.publishedAt || data.date;
@@ -89,7 +89,7 @@ export default class NewsCard {
 
   _getEventListeners() {
     const add = function () {
-      mainApi.addArticle(
+      this._mainApi.addArticle(
         this.keyword,
         this._title,
         this._description,
@@ -110,7 +110,7 @@ export default class NewsCard {
     }.bind(this);
 
     const del = function () {
-      mainApi.deleteArticle(this._id)
+      this._mainApi.deleteArticle(this._id)
         .then((res) => {
           if (res.statusCode === 200) {
             this.domElement.classList.add('element_disabled');
@@ -121,7 +121,7 @@ export default class NewsCard {
     }.bind(this);
 
     const delFromBlueState = function () {
-      mainApi.deleteArticle(this._id)
+      this._mainApi.deleteArticle(this._id)
         .then((res) => {
           if (res.statusCode === 200) {
             this._helpContainer.textContent = 'Статья удалена';

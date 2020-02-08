@@ -1,9 +1,10 @@
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import BaseComponent from '../../js/components/BaseComponent';
 
-export default class Favorites {
+export default class Favorites extends BaseComponent {
   constructor(parentElement) {
-    this._domElement = this._createDomElement();
-    parentElement.appendChild(this._domElement);
+    super(parentElement);
+    this.usernameContainer = this._domElement.querySelector('.favorites__username');
     this._keysContainer = this._domElement.querySelector('.favorites__keywords');
     this._favoritesSumContainer = this._domElement.querySelector('.favorites__sum');
     this._keysArray = [];
@@ -26,9 +27,9 @@ export default class Favorites {
     return domElement;
   }
 
-  render(newsCardsArray) {
+  render(articleCardsArray) {
     // Собираем массив всех ключевых слов
-    newsCardsArray.forEach((card) => {
+    articleCardsArray.forEach((card) => {
       this._keysArray.push(card.keyword);
     });
 
@@ -67,7 +68,7 @@ export default class Favorites {
     }
 
     // Рендерим количество статей у пользователя
-    const favoritesSum = newsCardsArray.length;
+    const favoritesSum = articleCardsArray.length;
     const lastNuber = Number.parseInt(favoritesSum.toString().slice(-1), 10);
     if (lastNuber === 1) {
       this._favoritesSumContainer.textContent = `${favoritesSum} сохранённая статья`;

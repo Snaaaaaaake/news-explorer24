@@ -1,9 +1,9 @@
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import BaseComponent from '../../js/components/BaseComponent';
 
-export default class Search {
+export default class Search extends BaseComponent {
   constructor(parentElement) {
-    this._domElement = this._createDomElement();
-    parentElement.appendChild(this._domElement);
+    super(parentElement);
     this.form = this._domElement.querySelector('.search__form');
     this.keywordInput = this._domElement.querySelector('.search__input');
   }

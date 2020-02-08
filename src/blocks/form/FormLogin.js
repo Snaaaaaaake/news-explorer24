@@ -1,16 +1,15 @@
 import Form from './Form';
-import mainApi from '../../js/api/MainApi';
 import elementsConstructor from '../../js/utils/elementsConstructor';
 
 export default class FormLogin extends Form {
-  constructor() {
-    super();
+  constructor(mainApi) {
+    super(mainApi);
     this._footerLink = this.domElement.querySelector('.form__footer_link_reg');
   }
 
   _fetch() {
     this._formButton.setAttribute('disabled', 'disabled');
-    mainApi.userLogin(this._emailInput.value, this._passwordInput.value).then((res) => {
+    this._mainApi.userLogin(this._emailInput.value, this._passwordInput.value).then((res) => {
       this._formButton.removeAttribute('disabled');
       // Если есть статус ошибки, значит выводим сообщение об ошибке
       if (res.statusCode) {

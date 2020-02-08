@@ -1,19 +1,18 @@
 import '../pages/favorites.css';
-
-import NewsCard from '../blocks/article/articleCard';
-import MainMenu from '../blocks/main-menu/MainMenu';
-import mainApi from './api/MainApi';
+import MainApi from './api/MainApi';
+import mainApiAdress from './constants/mainApiAdress';
+import ArticleCard from '../blocks/article/articleCard';
 import FavoritesCardList from '../blocks/search-results/FavoritesCardList';
+import MainMenu from '../blocks/main-menu/MainMenu';
 import Favorites from '../blocks/favorites/Favorites';
 import Footer from '../blocks/footer/Footer';
 import mainPageLink from './constants/mainPageLink';
 
-
-const mainMenu = new MainMenu(document.querySelector('.main-menu'));
+const mainApi = new MainApi(mainApiAdress);
+const favoritesCardList = new FavoritesCardList(document.querySelector('.search-results'));
+const mainMenu = new MainMenu(document.querySelector('.main-menu'), mainApi);
 const favorites = new Favorites(document.querySelector('.favorites'));
 const footer = new Footer(document.querySelector('.footer'));
-const favoritesCardList = new FavoritesCardList(document.querySelector('.search-results'));
-const favoritesPageUserNameElement = document.querySelector('.favorites__username');
 let isUserLoggedIn;
 
 // Проверка логин
@@ -24,13 +23,17 @@ mainApi.getUser().then((res) => {
   // Иначе грузим карточки
   } else {
     mainMenu.userMenuRender(res.name);
-    favoritesPageUserNameElement.textContent = res.name;
+    favorites.usernameContainer.textContent = res.name;
     isUserLoggedIn = true;
     mainApi.getUserArticles().then((data) => {
       if (data.length > 0) {
-        const newsCardsArray = data.map((item) => new NewsCard(item, isUserLoggedIn));
-        favoritesCardList.render(newsCardsArray);
-        favorites.render(newsCardsArray);
+        const articleCardsArray = data.map((item) => new ArticleCard(
+          mainApi,
+          item,
+          isUserLoggedIn,
+        ));
+        favoritesCardList.render(articleCardsArray);
+        favorites.render(articleCardsArray);
       } else {
         favoritesCardList.renderError();
       }
@@ -38,7 +41,6 @@ mainApi.getUser().then((res) => {
   }
 });
 
+// Рендерим стиль страницы
 mainMenu.getBlack();
-
-// костыль
-document.querySelector('.footer__link_main').setAttribute('href', mainPageLink);
+footer.getWhite();
