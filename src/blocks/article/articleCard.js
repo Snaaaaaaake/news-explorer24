@@ -24,6 +24,7 @@ export default class ArticleCard {
     this._keywordContainer.textContent = this.keyword;
     this._favoritesButton = this.domElement.querySelector('.article__favorites-button');
     this._helpContainer = this.domElement.querySelector('.article__help');
+    this._reloadCardListFunction = null;
     if (isUserLoggedIn) {
       // Определяем, на какой странице мы нахоодимся и рендерим нужные кнопки
       if (this._id) {
@@ -114,6 +115,7 @@ export default class ArticleCard {
         .then((res) => {
           if (res.statusCode === 200) {
             this.domElement.classList.add('element_disabled');
+            this._reloadCardListFunction();
           } else {
             this._helpContainer.textContent = res.message;
           }
@@ -133,5 +135,9 @@ export default class ArticleCard {
     }.bind(this);
 
     return { add, del, delFromBlueState };
+  }
+
+  setReloadCardListFunction(func) {
+    this._reloadCardListFunction = func;
   }
 }

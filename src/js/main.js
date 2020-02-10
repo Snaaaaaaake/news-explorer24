@@ -40,6 +40,7 @@ formRegistration.setResponseMethod(popup.responceRender);
 
 // Обработчик поиска статей
 // Т.к. по условиям нам нельзя создавать экзепляры ксласса в другом классе, то вынес его сюда.
+// Можно конечно передать кнопке обработчик, как выше в коде; если будет нужно, то перепишу.
 search.form.addEventListener('submit', (event) => {
   event.preventDefault();
   articleCardList.renderLoader();

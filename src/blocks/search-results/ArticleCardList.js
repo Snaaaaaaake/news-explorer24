@@ -21,10 +21,8 @@ export default class ArticleCardList extends SearchResults {
   }
 
   _clearResults() {
+    super._clearResults();
     this._articleCardsArray = [];
-    while (this._searchResiltsContent.firstChild) {
-      this._searchResiltsContent.removeChild(this._searchResiltsContent.firstChild);
-    }
   }
 
   _renderResults() {
@@ -41,13 +39,6 @@ export default class ArticleCardList extends SearchResults {
     if (this._articleCardsArray.length === 0) {
       this._addMoreButton.classList.add('element_disabled');
     }
-  }
-
-  renderLoader() {
-    this._domElement.classList.remove('element_disabled');
-    this._searchResiltsPreloader.classList.remove('element_disabled');
-    this._searchResiltsContainer.classList.add('element_disabled');
-    this._searchResiltsError.classList.add('element_disabled');
   }
 
   addCards(articleCardsArray) {

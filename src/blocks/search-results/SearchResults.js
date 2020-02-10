@@ -39,4 +39,17 @@ export default class SearchResults extends BaseComponent {
     this._searchResiltsContainer.classList.add('element_disabled');
     this._searchResiltsError.classList.remove('element_disabled');
   }
+
+  renderLoader() {
+    this._domElement.classList.remove('element_disabled');
+    this._searchResiltsPreloader.classList.remove('element_disabled');
+    this._searchResiltsContainer.classList.add('element_disabled');
+    this._searchResiltsError.classList.add('element_disabled');
+  }
+
+  _clearResults() {
+    while (this._searchResiltsContent.firstChild) {
+      this._searchResiltsContent.removeChild(this._searchResiltsContent.firstChild);
+    }
+  }
 }

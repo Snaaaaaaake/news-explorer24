@@ -29,11 +29,13 @@ export default class Favorites extends BaseComponent {
 
   render(articleCardsArray) {
     // Собираем массив всех ключевых слов
+    this._keysArray = [];
     articleCardsArray.forEach((card) => {
       this._keysArray.push(card.keyword);
     });
 
     // Вычисляем популярность ключевых слов
+    this._popularityArray = [];
     this._keysArray.forEach((key) => {
       const exist = this._popularityArray.findIndex((item) => item.name === key);
       if (exist >= 0) {
@@ -77,6 +79,11 @@ export default class Favorites extends BaseComponent {
     } else {
       this._favoritesSumContainer.textContent = `${favoritesSum} сохранённых статей`;
     }
+  }
+
+  renderError() {
+    this._favoritesSumContainer.textContent = 'пока нет сохранённых статей';
+    this._keysContainer.textContent = 'отсутствуют';
   }
 
   _createKeywordElement(key) {

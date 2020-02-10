@@ -13,6 +13,7 @@ export default class FavoritesCardList extends SearchResults {
   }
 
   render(articleCardsArray) {
+    this._clearResults();
     this._searchResiltsPreloader.classList.add('element_disabled');
     this._searchResiltsError.classList.add('element_disabled');
     this._searchResiltsContainer.classList.remove('element_disabled');

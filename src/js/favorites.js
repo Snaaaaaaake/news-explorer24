@@ -12,8 +12,30 @@ const mainApi = new MainApi(mainApiAdress);
 const favoritesCardList = new FavoritesCardList(document.querySelector('.search-results'));
 const mainMenu = new MainMenu(document.querySelector('.main-menu'), mainApi);
 const favorites = new Favorites(document.querySelector('.favorites'));
-const footer = new Footer(document.querySelector('.footer'), '../');
+const footer = new Footer(document.querySelector('.footer'));
 let isUserLoggedIn;
+
+// Создаём функцию рендера списка карт
+function renderFavoritesPage() {
+  mainApi.getUserArticles().then((data) => {
+    if (data.length > 0) {
+      const articleCardsArray = data.map((item) => new ArticleCard(
+        mainApi,
+        item,
+        isUserLoggedIn,
+      ));
+      // Дополнительно вешаем её же на каждую карту, чтобы при удалении карты страница обновлялась
+      articleCardsArray.forEach((card) => {
+        card.setReloadCardListFunction(renderFavoritesPage);
+      });
+      favoritesCardList.render(articleCardsArray);
+      favorites.render(articleCardsArray);
+    } else {
+      favorites.renderError();
+      favoritesCardList.renderError();
+    }
+  });
+}
 
 // Проверка логин
 mainApi.getUser().then((res) => {
@@ -22,22 +44,10 @@ mainApi.getUser().then((res) => {
     document.location.href = mainPageLink;
   // Иначе грузим карточки
   } else {
+    isUserLoggedIn = true;
     mainMenu.userMenuRender(res.name);
     favorites.usernameContainer.textContent = res.name;
-    isUserLoggedIn = true;
-    mainApi.getUserArticles().then((data) => {
-      if (data.length > 0) {
-        const articleCardsArray = data.map((item) => new ArticleCard(
-          mainApi,
-          item,
-          isUserLoggedIn,
-        ));
-        favoritesCardList.render(articleCardsArray);
-        favorites.render(articleCardsArray);
-      } else {
-        favoritesCardList.renderError();
-      }
-    });
+    renderFavoritesPage();
   }
 });
 
