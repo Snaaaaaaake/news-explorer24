@@ -25,11 +25,11 @@ export default class Footer extends BaseComponent {
       elementsConstructor('div', 'footer__element', [
         elementsConstructor('a', ['footer__link', 'footer__link_icon'], [
           elementsConstructor('picture', 'footer__picture', [
-            elementsConstructor('source', 'footer__picture_source', '', { name: 'srcset', value: githubIconSvg }),
+            elementsConstructor('source', 'footer__picture_source', '', { name: 'srcset', value: `${mainPageLink}${githubIconSvg}` }),
             elementsConstructor('img', 'footer__icon', '', [
               { name: 'title', value: 'Ссылка на GitHub' },
               { name: 'alt', value: 'Ссылка на GitHub' },
-              { name: 'src', value: githubIconPng },
+              { name: 'src', value: `${mainPageLink}${githubIconPng}` },
             ]),
           ]),
         ], [
@@ -38,11 +38,11 @@ export default class Footer extends BaseComponent {
         ]),
         elementsConstructor('a', ['footer__link', 'footer__link_icon'], [
           elementsConstructor('picture', 'footer__picture', [
-            elementsConstructor('source', 'footer__picture_source', '', { name: 'srcset', value: facebookIconSvg }),
+            elementsConstructor('source', 'footer__picture_source', '', { name: 'srcset', value: `${mainPageLink}${facebookIconSvg}` }),
             elementsConstructor('img', 'footer__icon', '', [
               { name: 'title', value: 'Ссылка на Facebook' },
               { name: 'alt', value: 'Ссылка на Facebook' },
-              { name: 'src', value: facebookIconPng },
+              { name: 'src', value: `${mainPageLink}${facebookIconPng}` },
             ]),
           ]),
         ], [

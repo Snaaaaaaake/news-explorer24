@@ -12,7 +12,7 @@ const mainApi = new MainApi(mainApiAdress);
 const favoritesCardList = new FavoritesCardList(document.querySelector('.search-results'));
 const mainMenu = new MainMenu(document.querySelector('.main-menu'), mainApi);
 const favorites = new Favorites(document.querySelector('.favorites'));
-const footer = new Footer(document.querySelector('.footer'));
+const footer = new Footer(document.querySelector('.footer'), '../');
 let isUserLoggedIn;
 
 // Проверка логин

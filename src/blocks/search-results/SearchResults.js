@@ -1,5 +1,6 @@
 import elementsConstructor from '../../js/utils/elementsConstructor';
 import BaseComponent from '../../js/components/BaseComponent';
+import mainPageLink from '../../js/constants/mainPageLink';
 
 const errorIcon = require('../../images/search-results__error_icon.png').default;
 
@@ -24,7 +25,7 @@ export default class SearchResults extends BaseComponent {
       elementsConstructor('div', ['search-results__error', 'element_disabled'], [
         elementsConstructor('img', 'search-results__error', '', [
           { name: 'alt', value: 'Ничего не найдено' },
-          { name: 'src', value: errorIcon },
+          { name: 'src', value: `${mainPageLink}${errorIcon}` },
         ]),
         elementsConstructor('h6', 'search-results__error_title', 'Ничего не найдено'),
         elementsConstructor('p', 'search-results__error_subtitle', 'К сожалению по вашему запросу ничего не найдено.'),
