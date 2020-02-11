@@ -21,14 +21,14 @@ export default class FormRegistration extends Form {
   }
 
   _fetch() {
-    this._formButton.setAttribute('disabled', 'disabled');
+    this._disableForm();
     this._mainApi.userCreate(
       this._nameInput.value,
       this._emailInput.value,
       this._passwordInput.value,
     )
       .then((res) => {
-        this._formButton.removeAttribute('disabled');
+        this._enableForm();
         // Если есть статус ошибки, значит выводим сообщение об ошибке
         if (res.statusCode) {
           this._responseError.textContent = res.message;

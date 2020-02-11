@@ -6,6 +6,8 @@ export default class Form {
     this._mainApi = mainApi;
     this._responseError = this.domElement.querySelector('.form__input_response-error');
     this._formButton = this.domElement.querySelector('.form__button');
+    this._inputsArray = this.domElement.querySelectorAll('.form__input');
+    this._errorsArray = this.domElement.querySelectorAll('.form__input_error');
     this._emailInput = this.domElement.querySelector('.form__input_email');
     this._passwordInput = this.domElement.querySelector('.form__input_password');
     this._form = this.domElement.querySelector('.form');
@@ -17,8 +19,8 @@ export default class Form {
 
   clear() {
     this._formButton.removeAttribute('disabled');
-    this._form.querySelectorAll('.form__input').forEach((i) => { i.value = ''; });
-    this._form.querySelectorAll('.form__input_error').forEach((i) => { i.textContent = ''; });
+    this._inputsArray.forEach((i) => { i.value = ''; });
+    this._errorsArray.forEach((i) => { i.textContent = ''; });
     this._responseError.textContent = '';
     this._formButton.classList.remove('form__button_is-active');
   }
@@ -28,6 +30,16 @@ export default class Form {
   setLinkHandler(handler) {
     this._linkHandler = handler;
     this._footerLink.addEventListener('click', this._linkHandler);
+  }
+
+  _disableForm() {
+    this._inputsArray.forEach((i) => { i.setAttribute('disabled', true); });
+    this._formButton.setAttribute('disabled', true);
+  }
+
+  _enableForm() {
+    this._inputsArray.forEach((i) => { i.removeAttribute('disabled'); });
+    this._formButton.removeAttribute('disabled');
   }
 
   _validateInputFocusout(event) {
