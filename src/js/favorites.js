@@ -1,12 +1,13 @@
 import '../pages/favorites.css';
 import MainApi from './api/MainApi';
+import errorHandler from './utils/errorHandler';
 import mainApiAdress from './constants/mainApiAdress';
+import mainPageLink from './constants/mainPageLink';
 import ArticleCard from '../blocks/article/articleCard';
 import FavoritesCardList from '../blocks/search-results/FavoritesCardList';
 import MainMenu from '../blocks/main-menu/MainMenu';
 import Favorites from '../blocks/favorites/Favorites';
 import Footer from '../blocks/footer/Footer';
-import mainPageLink from './constants/mainPageLink';
 
 const mainApi = new MainApi(mainApiAdress);
 const favoritesCardList = new FavoritesCardList(document.querySelector('.search-results'));
@@ -34,22 +35,24 @@ function renderFavoritesPage() {
       favorites.renderError();
       favoritesCardList.renderError();
     }
-  });
+  })
+    .catch((err) => {
+      errorHandler(err, favoritesCardList.renderError);
+      favorites.renderError();
+    });
 }
 
 // Проверка логин
 mainApi.getUser().then((res) => {
-  // Если незалогинен и приходит ошибка, то переадресация на главную
-  if (res.statusCode) {
+  isUserLoggedIn = true;
+  mainMenu.userMenuRender(res.name);
+  favorites.usernameContainer.textContent = res.name;
+  renderFavoritesPage();
+})
+  .catch((err) => {
+    errorHandler(err);
     document.location.href = mainPageLink;
-  // Иначе грузим карточки
-  } else {
-    isUserLoggedIn = true;
-    mainMenu.userMenuRender(res.name);
-    favorites.usernameContainer.textContent = res.name;
-    renderFavoritesPage();
-  }
-});
+  });
 
 // Рендерим стиль страницы
 mainMenu.getBlack();

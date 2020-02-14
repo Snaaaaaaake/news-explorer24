@@ -6,6 +6,7 @@ export default class Search extends BaseComponent {
     super(parentElement);
     this.form = this._domElement.querySelector('.search__form');
     this.keywordInput = this._domElement.querySelector('.search__input');
+    this._formButton = this._domElement.querySelector('.search__submit');
   }
 
   _createDomElement() {
@@ -23,5 +24,15 @@ export default class Search extends BaseComponent {
       ]),
     ]);
     return domElement;
+  }
+
+  disableForm() {
+    this.keywordInput.setAttribute('disabled', true);
+    this._formButton.setAttribute('disabled', true);
+  }
+
+  enableForm() {
+    this.keywordInput.removeAttribute('disabled');
+    this._formButton.removeAttribute('disabled');
   }
 }

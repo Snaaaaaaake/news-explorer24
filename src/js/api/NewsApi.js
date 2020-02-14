@@ -1,4 +1,5 @@
-const moment = require('moment');
+import moment from 'moment';
+import resCheck from '../utils/resCheck';
 
 moment().format();
 
@@ -12,7 +13,6 @@ export default class NewsApi {
     const fromDate = moment().format('YYYY-MM-DD');
     const toDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
     return fetch(`${this.baseUrl}from=${fromDate}&to=${toDate}&pageSize=100&q=${keyword}&${this.token}`)
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 }

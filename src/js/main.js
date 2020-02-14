@@ -3,6 +3,7 @@ import MainApi from './api/MainApi';
 import mainApiAdress from './constants/mainApiAdress';
 import NewsApi from './api/NewsApi';
 import newsApiToken from './constants/newsApiToken';
+import errorHandler from './utils/errorHandler';
 import FormLogin from '../blocks/form/FormLogin';
 import FormRegistration from '../blocks/form/FormRegistration';
 import ArticleCard from '../blocks/article/articleCard';
@@ -39,13 +40,13 @@ formRegistration.setLinkHandler(popupLoginOpenHandler);
 formRegistration.setResponseMethod(popup.responceRender);
 
 // Обработчик поиска статей
-// Т.к. по условиям нам нельзя создавать экзепляры ксласса в другом классе, то вынес его сюда.
-// Можно конечно передать кнопке обработчик, как выше в коде; если будет нужно, то перепишу.
-search.form.addEventListener('submit', (event) => {
+function searchHandler(event) {
   event.preventDefault();
   articleCardList.renderLoader();
+  search.disableForm();
   const keyword = search.keywordInput.value;
   newsApi.getNews(keyword).then((data) => {
+    search.enableForm();
     if (data.articles.length === 0) {
       articleCardList.renderError();
     } else {
@@ -57,18 +58,24 @@ search.form.addEventListener('submit', (event) => {
       ));
       articleCardList.addCards(articleCardsArray);
     }
-  });
-});
+  })
+    .catch((err) => {
+      errorHandler(err, articleCardList.renderError);
+      search.enableForm();
+    });
+}
+
+search.form.addEventListener('submit', searchHandler);
 
 // Проверка логина
 mainApi.getUser().then((res) => {
-  if (res.statusCode) {
+  mainMenu.userMenuRender(res.name);
+  isUserLoggedIn = true;
+})
+  .catch((err) => {
+    errorHandler(err);
     mainMenu.guestMenuRender();
-  } else {
-    mainMenu.userMenuRender(res.name);
-    isUserLoggedIn = true;
-  }
-});
+  });
 
 // Рендерим стиль страницы
 mainMenu.getWhite();

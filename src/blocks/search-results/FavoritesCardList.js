@@ -4,12 +4,12 @@ export default class FavoritesCardList extends SearchResults {
   constructor(parentElement) {
     super(parentElement);
     this._modifyDomElement();
+    this._errorTitle = 'Вы ещё не добавили в избранное ни одной статьи';
+    this._errorSubtitle = '';
   }
 
   _modifyDomElement() {
     this._domElement.classList.remove('element_disabled');
-    this._domElement.querySelector('.search-results__error_subtitle').classList.add('element_disabled');
-    this._domElement.querySelector('.search-results__error_title').textContent = 'Вы ещё не добавили в избранное ни одной статьи';
   }
 
   render(articleCardsArray) {

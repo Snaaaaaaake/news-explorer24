@@ -1,6 +1,7 @@
 import articleFavoriteIcon from './articleFavoriteIcon';
 import articleDeleteIcon from './articleDeleteIcon';
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import errorHandler from '../../js/utils/errorHandler';
 
 const moment = require('moment');
 
@@ -100,38 +101,29 @@ export default class ArticleCard {
         this._image,
       )
         .then((res) => {
-          if (res.statusCode === 201) {
-            this._helpContainer.textContent = 'Статья сохранена';
-            this._renderDeleteBlueButton();
-            this._id = res.id;
-          } else {
-            this._helpContainer.textContent = res.message;
-          }
-        });
+          this._helpContainer.textContent = 'Статья сохранена';
+          this._renderDeleteBlueButton();
+          this._id = res.id;
+        })
+        .catch((err) => errorHandler(err, this._helpContainer));
     }.bind(this);
 
     const del = function () {
       this._mainApi.deleteArticle(this._id)
-        .then((res) => {
-          if (res.statusCode === 200) {
-            this.domElement.classList.add('element_disabled');
-            this._reloadCardListFunction();
-          } else {
-            this._helpContainer.textContent = res.message;
-          }
-        });
+        .then(() => {
+          this.domElement.classList.add('element_disabled');
+          this._reloadCardListFunction();
+        })
+        .catch((err) => errorHandler(err, this._helpContainer));
     }.bind(this);
 
     const delFromBlueState = function () {
       this._mainApi.deleteArticle(this._id)
-        .then((res) => {
-          if (res.statusCode === 200) {
-            this._helpContainer.textContent = 'Статья удалена';
-            this._renderAddButton();
-          } else {
-            this._helpContainer.textContent = res.message;
-          }
-        });
+        .then(() => {
+          this._helpContainer.textContent = 'Статья удалена';
+          this._renderAddButton();
+        })
+        .catch((err) => errorHandler(err, this._helpContainer));
     }.bind(this);
 
     return { add, del, delFromBlueState };

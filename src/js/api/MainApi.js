@@ -1,3 +1,5 @@
+import resCheck from '../utils/resCheck';
+
 export default class MainApi {
   constructor(url) {
     this.baseUrl = url;
@@ -12,8 +14,7 @@ export default class MainApi {
         name, email, password,
       }),
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   userLogin(email, password) {
@@ -25,8 +26,7 @@ export default class MainApi {
         email, password,
       }),
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   userLogout() {
@@ -34,8 +34,7 @@ export default class MainApi {
       credentials: 'include',
       headers: this.baseHeader,
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   getUser() {
@@ -43,8 +42,7 @@ export default class MainApi {
       headers: this.baseHeader,
       credentials: 'include',
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   addArticle(keyword, title, description, date, source, url, image) {
@@ -62,8 +60,7 @@ export default class MainApi {
         image,
       }),
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   getUserArticles() {
@@ -71,8 +68,7 @@ export default class MainApi {
       credentials: 'include',
       headers: this.baseHeader,
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   deleteArticle(id) {
@@ -81,7 +77,6 @@ export default class MainApi {
       credentials: 'include',
       headers: this.baseHeader,
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 }

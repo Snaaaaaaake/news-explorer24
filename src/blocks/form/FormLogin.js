@@ -1,5 +1,6 @@
 import Form from './Form';
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import errorHandler from '../../js/utils/errorHandler';
 
 export default class FormLogin extends Form {
   constructor(mainApi) {
@@ -11,13 +12,12 @@ export default class FormLogin extends Form {
     this._disableForm();
     this._mainApi.userLogin(this._emailInput.value, this._passwordInput.value).then((res) => {
       this._enableForm();
-      // Если есть статус ошибки, значит выводим сообщение об ошибке
-      if (res.statusCode) {
-        this._responseError.textContent = res.message;
-      } else {
-        document.location.reload(true);
-      }
-    });
+      document.location.reload(true);
+    })
+      .catch((err) => {
+        errorHandler(err, this._responseError);
+        this._enableForm();
+      });
   }
 
   _createDomElement() {

@@ -1,5 +1,6 @@
 import Form from './Form';
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import errorHandler from '../../js/utils/errorHandler';
 
 export default class FormRegistration extends Form {
   constructor(mainApi) {
@@ -27,14 +28,13 @@ export default class FormRegistration extends Form {
       this._emailInput.value,
       this._passwordInput.value,
     )
-      .then((res) => {
+      .then(() => {
         this._enableForm();
-        // Если есть статус ошибки, значит выводим сообщение об ошибке
-        if (res.statusCode) {
-          this._responseError.textContent = res.message;
-        } else {
-          this._responseMethod({ title: 'Пользователь успешно зарегистрирован!', responseElement: this._responseLink });
-        }
+        this._responseMethod({ title: 'Пользователь успешно зарегистрирован!', responseElement: this._responseLink });
+      })
+      .catch((err) => {
+        errorHandler(err, this._responseError);
+        this._enableForm();
       });
   }
 
@@ -66,7 +66,7 @@ export default class FormRegistration extends Form {
         ]),
         elementsConstructor('p', 'form__input_error'),
         elementsConstructor('p', 'form__input_response-error'),
-        elementsConstructor('button', ['form__button', 'form-element'], 'Войти', { name: 'type', value: 'submit' }),
+        elementsConstructor('button', ['form__button', 'form-element'], 'Зарегистрироваться', { name: 'type', value: 'submit' }),
       ], [
         { name: 'name', value: 'formRegistration' },
         { name: 'novalidate', value: true },

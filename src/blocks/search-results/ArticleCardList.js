@@ -5,6 +5,9 @@ export default class ArticleCardList extends SearchResults {
   constructor(parentElement) {
     super(parentElement);
     this._modifyDomElement();
+    this._articlesRow = 3;
+    this._errorTitle = 'Ничего не найдено';
+    this._errorSubtitle = 'К сожалению по вашему запросу ничего не найдено.';
     this._articleCardsArray = [];
     this._addMoreButton = this._domElement.querySelector('.search-results__more-button');
     this._addMoreButton.addEventListener('click', (event) => {
@@ -30,7 +33,7 @@ export default class ArticleCardList extends SearchResults {
     this._searchResiltsContainer.classList.remove('element_disabled');
     this._searchResiltsError.classList.add('element_disabled');
     this._addMoreButton.classList.remove('element_disabled');
-    for (let i = 0; i < 3; i += 1) {
+    for (let i = 0; i < this._articlesRow; i += 1) {
       if (this._articleCardsArray.length > 0) {
         this._searchResiltsContent.appendChild(this._articleCardsArray[0].domElement);
         this._articleCardsArray.shift();

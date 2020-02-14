@@ -1,12 +1,12 @@
-function elementsConstructor(tag, classs, content, attributes) {
+function elementsConstructor(tag, classes, content, attributes) {
   const element = document.createElement(tag);
-  if (classs) {
-    if (typeof classs === 'object' && classs.length) {
-      classs.forEach((item) => {
+  if (classes) {
+    if (typeof classes === 'object' && classes.length) {
+      classes.forEach((item) => {
         element.classList.add(item);
       });
     } else {
-      element.classList.add(classs);
+      element.classList.add(classes);
     }
   }
   if (content) {

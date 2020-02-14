@@ -1,6 +1,7 @@
 import logoutLinkIcon from './mainMenuLogoutLinkIcon';
 import mainPageLink from '../../js/constants/mainPageLink';
 import elementsConstructor from '../../js/utils/elementsConstructor';
+import errorHandler from '../../js/utils/errorHandler';
 import { sliderButtonIconOpen, sliderButtonIconClose } from './mainMenuSliderButtonIcons';
 import BaseComponent from '../../js/components/BaseComponent';
 
@@ -22,7 +23,10 @@ export default class MainMenu extends BaseComponent {
     this._logoutLink.addEventListener('click', () => {
       this._mainApi.userLogout().then(() => {
         document.location.reload(true);
-      });
+      })
+        .catch((err) => {
+          errorHandler(err);
+        });
     });
     this._linksArray = [
       this._logoLink,

@@ -11,6 +11,10 @@ export default class SearchResults extends BaseComponent {
     this._searchResiltsContent = this._domElement.querySelector('.search-results__content');
     this._searchResiltsPreloader = this._domElement.querySelector('.search-results__preloader');
     this._searchResiltsError = this._domElement.querySelector('.search-results__error');
+    this._searchResiltsErrorTitleContainer = this._domElement.querySelector('.search-results__error_title');
+    this._searchResiltsErrorSubtitleContainer = this._domElement.querySelector('.search-results__error_subtitle');
+    // Нужно для errorHandler
+    this.renderError = this.renderError.bind(this);
   }
 
   _createDomElement() {
@@ -34,10 +38,17 @@ export default class SearchResults extends BaseComponent {
     return domElement;
   }
 
-  renderError() {
+  renderError(err) {
     this._searchResiltsPreloader.classList.add('element_disabled');
     this._searchResiltsContainer.classList.add('element_disabled');
     this._searchResiltsError.classList.remove('element_disabled');
+    if (err) {
+      this._searchResiltsErrorTitleContainer.textContent = 'Произошла ошибка';
+      this._searchResiltsErrorSubtitleContainer.textContent = err;
+    } else {
+      this._searchResiltsErrorTitleContainer.textContent = this._errorTitle;
+      this._searchResiltsErrorSubtitleContainer.textContent = this._errorSubtitle;
+    }
   }
 
   renderLoader() {
