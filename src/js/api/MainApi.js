@@ -1,4 +1,6 @@
-class MainApi {
+import resCheck from '../utils/resCheck';
+
+export default class MainApi {
   constructor(url) {
     this.baseUrl = url;
     this.baseHeader = { 'Content-Type': 'application/json' };
@@ -12,8 +14,7 @@ class MainApi {
         name, email, password,
       }),
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   userLogin(email, password) {
@@ -25,8 +26,7 @@ class MainApi {
         email, password,
       }),
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   userLogout() {
@@ -34,8 +34,7 @@ class MainApi {
       credentials: 'include',
       headers: this.baseHeader,
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   getUser() {
@@ -43,8 +42,7 @@ class MainApi {
       headers: this.baseHeader,
       credentials: 'include',
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   addArticle(keyword, title, description, date, source, url, image) {
@@ -62,8 +60,7 @@ class MainApi {
         image,
       }),
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   getUserArticles() {
@@ -71,8 +68,7 @@ class MainApi {
       credentials: 'include',
       headers: this.baseHeader,
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 
   deleteArticle(id) {
@@ -81,9 +77,6 @@ class MainApi {
       credentials: 'include',
       headers: this.baseHeader,
     })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+      .then(resCheck);
   }
 }
-const mainApi = new MainApi('https://api.news-explorer24.ru');
-export default mainApi;

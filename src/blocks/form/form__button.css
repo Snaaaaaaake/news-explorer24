@@ -13,3 +13,7 @@
     color: #B6BCBF;
     padding: 0;
 }
+
+.form__button:hover {
+  cursor: pointer;
+}

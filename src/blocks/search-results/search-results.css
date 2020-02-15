@@ -5,20 +5,4 @@
 @import url(./search-results__error.css);
 @import url(./search-results__error_title.css);
 @import url(./search-results__error_subtitle.css);
-
-.search-results {
-  background: #F5F6F7;
-  padding:80px 0;
-}
-
-@media (max-width:1279px) {
-  .search-results {
-    padding:40px 0;
-  }
-}
-
-@media (max-width:600px) {
-  .search-results {
-    padding:32px 0;
-  }
-}
+@import url(./search-results__container.css);

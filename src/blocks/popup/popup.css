@@ -2,10 +2,7 @@
 @import url(./popup__close.css);
 
 .popup {
-  position: fixed;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, calc(-50% - .5px));
+  position: relative;
   width: 430px;
   border-radius: 16px;
   padding:34px 36px;

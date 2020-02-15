@@ -1,0 +1,32 @@
+const sliderButtonIconOpen = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+sliderButtonIconOpen.classList.add('main-menu__slider-button_icon');
+sliderButtonIconOpen.setAttribute('viewBox', '0 0 24 24');
+sliderButtonIconOpen.setAttribute('width', '24');
+sliderButtonIconOpen.setAttribute('height', '24');
+const sliderButtonIconOpenRect1 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+sliderButtonIconOpenRect1.setAttribute('x', '4');
+sliderButtonIconOpenRect1.setAttribute('y', '8');
+sliderButtonIconOpenRect1.setAttribute('width', '16');
+sliderButtonIconOpenRect1.setAttribute('height', '2');
+sliderButtonIconOpen.appendChild(sliderButtonIconOpenRect1);
+const sliderButtonIconOpenRect2 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+sliderButtonIconOpenRect2.setAttribute('x', '4');
+sliderButtonIconOpenRect2.setAttribute('y', '14');
+sliderButtonIconOpenRect2.setAttribute('width', '16');
+sliderButtonIconOpenRect2.setAttribute('height', '2');
+sliderButtonIconOpen.appendChild(sliderButtonIconOpenRect2);
+
+const sliderButtonIconClose = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+sliderButtonIconClose.classList.add('main-menu__slider-button_icon');
+sliderButtonIconClose.classList.add('element_disabled');
+sliderButtonIconClose.setAttribute('viewBox', '0 0 24 24');
+sliderButtonIconClose.setAttribute('width', '24');
+sliderButtonIconClose.setAttribute('height', '24');
+const sliderButtonIconClosePath1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+sliderButtonIconClosePath1.setAttribute('d', 'M13.4142 12L18.7071 17.2929L17.2929 18.7071L11.2929 12.7071C10.9024 12.3166 10.9024 11.6834 11.2929 11.2929L17.2929 5.29289L18.7071 6.70711L13.4142 12Z');
+sliderButtonIconClose.appendChild(sliderButtonIconClosePath1);
+const sliderButtonIconClosePath2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+sliderButtonIconClosePath2.setAttribute('d', 'M10.8787 12L5.58577 17.2929L6.99999 18.7071L13 12.7071C13.3905 12.3166 13.3905 11.6834 13 11.2929L6.99999 5.29289L5.58577 6.70711L10.8787 12Z');
+sliderButtonIconClose.appendChild(sliderButtonIconClosePath2);
+
+export { sliderButtonIconOpen, sliderButtonIconClose };

@@ -1,0 +1,22 @@
+.search__container {
+  width:608px;
+  margin:auto;
+  padding-bottom: 80px;
+}
+
+@media (max-width:1279px) {
+  .search__container {
+    width:58%;
+    max-width: 500px;
+    padding-bottom: 48px;
+  }
+}
+
+@media (max-width:600px) {
+  .search__container {
+    box-sizing: border-box;
+    width:100%;
+    max-width: 600px;
+    padding: 0 16px 32px 16px;
+  }
+}

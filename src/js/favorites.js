@@ -1,50 +1,59 @@
 import '../pages/favorites.css';
-import Popup from './components/Popup';
-import FormRegistration from './components/FormRegistration';
-import FormLogin from './components/FormLogin';
-import NewsCard from './components/NewsCard';
-import MainMenu from './components/MainMenu';
-import mainApi from './api/MainApi';
-import FavoriteCardList from './components/FavoriteCardList';
-import siteHref from './constants/siteHref';
+import MainApi from './api/MainApi';
+import errorHandler from './utils/errorHandler';
+import mainApiAdress from './constants/mainApiAdress';
+import mainPageLink from './constants/mainPageLink';
+import ArticleCard from '../blocks/article/articleCard';
+import FavoritesCardList from '../blocks/search-results/FavoritesCardList';
+import MainMenu from '../blocks/main-menu/MainMenu';
+import Favorites from '../blocks/favorites/Favorites';
+import Footer from '../blocks/footer/Footer';
 
-const formLogin = new FormLogin();
-const formRegistration = new FormRegistration();
-const popup = new Popup();
-const mainMenu = new MainMenu(document.querySelector('.header__main-menu-container'));
-const favoriteCardList = new FavoriteCardList(document.querySelector('.search-results'));
+const mainApi = new MainApi(mainApiAdress);
+const favoritesCardList = new FavoritesCardList(document.querySelector('.search-results'));
+const mainMenu = new MainMenu(document.querySelector('.main-menu'), mainApi);
+const favorites = new Favorites(document.querySelector('.favorites'));
+const footer = new Footer(document.querySelector('.footer'));
 let isUserLoggedIn;
 
-function popupLoginOpenHandler() {
-  popup.open('Вход', formLogin);
-}
-function popupRegistrationOpenHandler() {
-  popup.open('Регистрация', formRegistration);
-}
-mainMenu.setLinkHandler(popupLoginOpenHandler);
-formLogin.setLinkHandler(popupRegistrationOpenHandler);
-formRegistration.setLinkHandler(popupLoginOpenHandler);
-formRegistration.setResponseMethod(popup.responceRender);
-
-// проверка логин
-mainApi.getUser().then((res) => {
-  if (res.statusCode) {
-    // document.location.href = `${siteHref}`;
-  } else {
-    mainMenu.userMenuRender(res.name);
-    isUserLoggedIn = true;
-    mainApi.getUserArticles().then((data) => {
-      if (data.length === 0) {
-        favoriteCardList.renderError();
-      } else {
-        const newsCardsArray = data.map((item) => new NewsCard(item, isUserLoggedIn));
-        favoriteCardList.addCards(newsCardsArray);
-      }
+// Создаём функцию рендера списка карт
+function renderFavoritesPage() {
+  mainApi.getUserArticles().then((data) => {
+    if (data.length > 0) {
+      const articleCardsArray = data.map((item) => new ArticleCard(
+        mainApi,
+        item,
+        isUserLoggedIn,
+      ));
+      // Дополнительно вешаем её же на каждую карту, чтобы при удалении карты страница обновлялась
+      articleCardsArray.forEach((card) => {
+        card.setReloadCardListFunction(renderFavoritesPage);
+      });
+      favoritesCardList.render(articleCardsArray);
+      favorites.render(articleCardsArray);
+    } else {
+      favorites.renderError();
+      favoritesCardList.renderError();
+    }
+  })
+    .catch((err) => {
+      errorHandler(err, favoritesCardList.renderError);
+      favorites.renderError();
     });
-  }
-});
+}
 
+// Проверка логин
+mainApi.getUser().then((res) => {
+  isUserLoggedIn = true;
+  mainMenu.userMenuRender(res.name);
+  favorites.usernameContainer.textContent = res.name;
+  renderFavoritesPage();
+})
+  .catch((err) => {
+    errorHandler(err);
+    document.location.href = mainPageLink;
+  });
+
+// Рендерим стиль страницы
 mainMenu.getBlack();
-
-// костыль
-document.querySelector('.footer__link_main').setAttribute('href', siteHref);
+footer.getWhite();
