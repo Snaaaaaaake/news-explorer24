@@ -1,15 +1,19 @@
 import elementsConstructor from '../../js/utils/elementsConstructor';
-import BaseComponent from '../../js/components/BaseComponent';
 
-export default class Popup extends BaseComponent {
-  constructor(parentElement) {
-    super(parentElement);
+export default class Popup {
+  constructor() {
+    this._domElement = this._createDomElement();
+    this._overlay = this._createOverlay();
+    this._overlay.appendChild(this._domElement);
     this._title = this._domElement.querySelector('.popup__title');
     this._contentContainer = this._domElement.querySelector('.popup__content');
     this._responceContainer = elementsConstructor('div', 'popup__responce');
-    this._overlay = this._createOverlay();
     this._escapeEventListener = this._escapeEventListener.bind(this);
     this.responceRender = this.responceRender.bind(this);
+    // Чтобы не срабатывал click на оверлее
+    this._domElement.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
   }
 
   open(title, content) {
@@ -48,7 +52,7 @@ export default class Popup extends BaseComponent {
 
   _createDomElement() {
     const domElement = elementsConstructor('div', ['popup', 'element_disabled'], [
-      elementsConstructor('div', 'popup__close'),
+      elementsConstructor('div', 'popup__close', '', { name: 'title', value: 'Закрыть' }),
       elementsConstructor('h6', 'popup__title'),
       elementsConstructor('div', 'popup__content'),
     ]);
@@ -59,7 +63,7 @@ export default class Popup extends BaseComponent {
   }
 
   _createOverlay() {
-    const overlay = elementsConstructor('div', ['overlay', 'element_disabled']);
+    const overlay = elementsConstructor('div', ['element_disabled', 'overlay', 'overlay_top']);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => {
       this.close();
