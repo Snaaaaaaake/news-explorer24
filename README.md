@@ -15,4 +15,6 @@ GH-pages: https://snaaaaaaake.github.io/news-explorer-frontend
 * Нативный JavaScript 
 * Использованы ES6-классы
 * Кастомная валидация форм
-* Инфраструктура Git, Webpack 
+* Используется Webpack для сборки проекта
+* Babel для минификации и транспиляции JS-кода
+* PostCSS для минификации CSS-кода и простановки вендорных префиксов
