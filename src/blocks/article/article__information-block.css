@@ -1,11 +1,11 @@
-.article__information_block {
+.article__information-block {
   max-height: 264px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 @media (max-width:1279px) {
-  .article__information_block {
+  .article__information-block {
     max-height: 238px;
  }
 }

@@ -1,9 +1,9 @@
 @import url(./form__button.css);
 @import url(./form__footer.css);
-@import url(./form__footer_link.css);
-@import url(./form__footer_responce-link.css);
+@import url(./form__footer-link.css);
+@import url(./form__footer-responce-link.css);
 @import url(./form__input.css);
-@import url(./form__input_error.css);
-@import url(./form__input_response-error.css);
+@import url(./form__input-error.css);
+@import url(./form__input-response-error.css);
 @import url(./form__label.css);
 @import url(./form__button_is-active.css);

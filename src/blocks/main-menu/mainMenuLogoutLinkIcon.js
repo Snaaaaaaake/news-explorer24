@@ -1,5 +1,5 @@
 const logoutLinkIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-logoutLinkIcon.classList.add('main-menu__logout-link_icon');
+logoutLinkIcon.classList.add('main-menu__logout-link-icon');
 logoutLinkIcon.setAttribute('viewBox', '0 0 18 16');
 logoutLinkIcon.setAttribute('width', '18');
 logoutLinkIcon.setAttribute('height', '16');

@@ -1,0 +1,7 @@
+.article__svg-icon-fill {
+  fill: #B6BCBF;
+}
+
+.article__svg-icon-container:hover .article__svg-icon-fill {
+  fill:#1A1B22;
+}

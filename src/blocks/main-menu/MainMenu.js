@@ -45,7 +45,7 @@ export default class MainMenu extends BaseComponent {
           { name: 'title', value: 'Агрегатор новостей NewsExplorer24' },
           { name: 'href', value: mainPageLink },
         ])),
-      elementsConstructor('div', ['main-menu__link-container', 'main-menu__link-container_slider'],
+      elementsConstructor('div', ['main-menu__link-container', 'main-menu__link-container-slider'],
         elementsConstructor('button', 'main-menu__slider-button', [
           sliderButtonIconOpen,
           sliderButtonIconClose,
@@ -55,12 +55,12 @@ export default class MainMenu extends BaseComponent {
           { name: 'title', value: 'На главную' },
           { name: 'href', value: mainPageLink },
         ]),
-        elementsConstructor('a', ['main-menu__link', 'main-menu__favorites-link', 'element_disabled'], 'Сохраненные статьи', [
+        elementsConstructor('a', ['main-menu__link', 'main-menu__favorites-link', 'element-disabled'], 'Сохраненные статьи', [
           { name: 'title', value: 'Страница ваших сохраненных статей' },
           { name: 'href', value: `${mainPageLink}favorites` },
         ]),
-        elementsConstructor('button', ['main-menu__link', 'main-menu__link-oval', 'main-menu__autorisation-link', 'element_disabled'], 'Авторизоваться', { name: 'title', value: 'Авторизоваться' }),
-        elementsConstructor('button', ['main-menu__link', 'main-menu__link-oval', 'main-menu__logout-link', 'element_disabled'], '', { name: 'title', value: 'Выйти' }),
+        elementsConstructor('button', ['main-menu__link', 'main-menu__link-oval', 'main-menu__autorisation-link', 'element-disabled'], 'Авторизоваться', { name: 'title', value: 'Авторизоваться' }),
+        elementsConstructor('button', ['main-menu__link', 'main-menu__link-oval', 'main-menu__logout-link', 'element-disabled'], '', { name: 'title', value: 'Выйти' }),
       ]),
     ]);
     return domElement;
@@ -69,9 +69,9 @@ export default class MainMenu extends BaseComponent {
   sliderToggle() {
     this._sliderElement.classList.toggle('main-menu__slider_hidden');
     this._domElement.classList.toggle('main-menu_opened');
-    this._overlay.classList.toggle('element_disabled');
-    this._sliderButton.children[0].classList.toggle('element_disabled');
-    this._sliderButton.children[1].classList.toggle('element_disabled');
+    this._overlay.classList.toggle('element-disabled');
+    this._sliderButton.children[0].classList.toggle('element-disabled');
+    this._sliderButton.children[1].classList.toggle('element-disabled');
   }
 
   getWhite() {
@@ -95,15 +95,15 @@ export default class MainMenu extends BaseComponent {
   }
 
   guestMenuRender() {
-    this._favoritesLink.classList.add('element_disabled');
-    this._autorisationLink.classList.remove('element_disabled');
-    this._logoutLink.classList.add('element_disabled');
+    this._favoritesLink.classList.add('element-disabled');
+    this._autorisationLink.classList.remove('element-disabled');
+    this._logoutLink.classList.add('element-disabled');
   }
 
   userMenuRender(username) {
-    this._favoritesLink.classList.remove('element_disabled');
-    this._autorisationLink.classList.add('element_disabled');
-    this._logoutLink.classList.remove('element_disabled');
+    this._favoritesLink.classList.remove('element-disabled');
+    this._autorisationLink.classList.add('element-disabled');
+    this._logoutLink.classList.remove('element-disabled');
     this._logoutLink.textContent = username;
     this._logoutLink.appendChild(logoutLinkIcon);
   }
@@ -113,7 +113,7 @@ export default class MainMenu extends BaseComponent {
   }
 
   _createOverlay() {
-    const overlay = elementsConstructor('div', ['overlay', 'element_disabled']);
+    const overlay = elementsConstructor('div', ['overlay', 'element-disabled']);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => {
       this.sliderToggle();

@@ -2,7 +2,7 @@ import elementsConstructor from '../../js/utils/elementsConstructor';
 import BaseComponent from '../../js/components/BaseComponent';
 import mainPageLink from '../../js/constants/mainPageLink';
 
-const errorIcon = require('../../images/search-results__error_icon.png').default;
+const errorIcon = require('../../images/search-results__error-icon.png').default;
 
 export default class SearchResults extends BaseComponent {
   constructor(parentElement) {
@@ -11,14 +11,14 @@ export default class SearchResults extends BaseComponent {
     this._searchResiltsContent = this._domElement.querySelector('.search-results__content');
     this._searchResiltsPreloader = this._domElement.querySelector('.search-results__preloader');
     this._searchResiltsError = this._domElement.querySelector('.search-results__error');
-    this._searchResiltsErrorTitleContainer = this._domElement.querySelector('.search-results__error_title');
-    this._searchResiltsErrorSubtitleContainer = this._domElement.querySelector('.search-results__error_subtitle');
+    this._searchResiltsErrorTitleContainer = this._domElement.querySelector('.search-results__error-title');
+    this._searchResiltsErrorSubtitleContainer = this._domElement.querySelector('.search-results__error-subtitle');
     // Нужно для errorHandler
     this.renderError = this.renderError.bind(this);
   }
 
   _createDomElement() {
-    const domElement = elementsConstructor('div', ['search-results__container', 'width-corrector', 'element_disabled'], [
+    const domElement = elementsConstructor('div', ['search-results__container', 'width-corrector', 'element-disabled'], [
       elementsConstructor('div', 'search-results__main-container', [
         elementsConstructor('div', 'search-results__content'),
       ]),
@@ -26,22 +26,22 @@ export default class SearchResults extends BaseComponent {
         elementsConstructor('div', 'preloader'),
         elementsConstructor('p', 'preloader_text', 'Идет поиск новостей...'),
       ]),
-      elementsConstructor('div', ['search-results__error', 'element_disabled'], [
+      elementsConstructor('div', ['search-results__error', 'element-disabled'], [
         elementsConstructor('img', 'search-results__error', '', [
           { name: 'alt', value: 'Ничего не найдено' },
           { name: 'src', value: `${mainPageLink}${errorIcon}` },
         ]),
-        elementsConstructor('h6', 'search-results__error_title', 'Ничего не найдено'),
-        elementsConstructor('p', 'search-results__error_subtitle', 'К сожалению по вашему запросу ничего не найдено.'),
+        elementsConstructor('h6', 'search-results__error-title', 'Ничего не найдено'),
+        elementsConstructor('p', 'search-results__error-subtitle', 'К сожалению по вашему запросу ничего не найдено.'),
       ]),
     ]);
     return domElement;
   }
 
   renderError(err) {
-    this._searchResiltsPreloader.classList.add('element_disabled');
-    this._searchResiltsContainer.classList.add('element_disabled');
-    this._searchResiltsError.classList.remove('element_disabled');
+    this._searchResiltsPreloader.classList.add('element-disabled');
+    this._searchResiltsContainer.classList.add('element-disabled');
+    this._searchResiltsError.classList.remove('element-disabled');
     if (err) {
       this._searchResiltsErrorTitleContainer.textContent = 'Произошла ошибка';
       this._searchResiltsErrorSubtitleContainer.textContent = err;
@@ -52,10 +52,10 @@ export default class SearchResults extends BaseComponent {
   }
 
   renderLoader() {
-    this._domElement.classList.remove('element_disabled');
-    this._searchResiltsPreloader.classList.remove('element_disabled');
-    this._searchResiltsContainer.classList.add('element_disabled');
-    this._searchResiltsError.classList.add('element_disabled');
+    this._domElement.classList.remove('element-disabled');
+    this._searchResiltsPreloader.classList.remove('element-disabled');
+    this._searchResiltsContainer.classList.add('element-disabled');
+    this._searchResiltsError.classList.add('element-disabled');
   }
 
   _clearResults() {

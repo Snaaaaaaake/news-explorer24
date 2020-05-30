@@ -5,10 +5,10 @@
 @import url(./article__source.css);
 @import url(./article__title.css);
 @import url(./article__link.css);
-@import url(./article__information_block.css);
-@import url(./article__svg-icon_stroke.css);
-@import url(./article__svg-icon_fill.css);
-@import url(./article__svg-icon_container.css);
+@import url(./article__information-block.css);
+@import url(./article__svg-icon-stroke.css);
+@import url(./article__svg-icon-fill.css);
+@import url(./article__svg-icon-container.css);
 @import url(./article__svg-icon_blue.css);
 @import url(./article__keyword.css);
 @import url(./article__help.css);

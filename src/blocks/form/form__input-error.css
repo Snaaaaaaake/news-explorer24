@@ -1,4 +1,4 @@
-.form__input_error {
+.form__input-error {
     font-family: 'Inter', sans-serif;
     font-size: 12px;
     line-height: 15px;
@@ -6,6 +6,6 @@
     margin-top: 3px;
     margin-bottom:13px;
 }
-.form__input_error:empty {
+.form__input-error:empty {
     height: 15px;
 }

@@ -4,10 +4,10 @@ export default class Form {
   constructor(mainApi) {
     this.domElement = this._createDomElement();
     this._mainApi = mainApi;
-    this._responseError = this.domElement.querySelector('.form__input_response-error');
+    this._responseError = this.domElement.querySelector('.form__input-response-error');
     this._formButton = this.domElement.querySelector('.form__button');
     this._inputsArray = this.domElement.querySelectorAll('.form__input');
-    this._errorsArray = this.domElement.querySelectorAll('.form__input_error');
+    this._errorsArray = this.domElement.querySelectorAll('.form__input-error');
     this._emailInput = this.domElement.querySelector('.form__input_email');
     this._passwordInput = this.domElement.querySelector('.form__input_password');
     this._form = this.domElement.querySelector('.form');

@@ -29,10 +29,10 @@ export default class ArticleCardList extends SearchResults {
   }
 
   _renderResults() {
-    this._searchResiltsPreloader.classList.add('element_disabled');
-    this._searchResiltsContainer.classList.remove('element_disabled');
-    this._searchResiltsError.classList.add('element_disabled');
-    this._addMoreButton.classList.remove('element_disabled');
+    this._searchResiltsPreloader.classList.add('element-disabled');
+    this._searchResiltsContainer.classList.remove('element-disabled');
+    this._searchResiltsError.classList.add('element-disabled');
+    this._addMoreButton.classList.remove('element-disabled');
     for (let i = 0; i < this._articlesRow; i += 1) {
       if (this._articleCardsArray.length > 0) {
         this._searchResiltsContent.appendChild(this._articleCardsArray[0].domElement);
@@ -40,7 +40,7 @@ export default class ArticleCardList extends SearchResults {
       }
     }
     if (this._articleCardsArray.length === 0) {
-      this._addMoreButton.classList.add('element_disabled');
+      this._addMoreButton.classList.add('element-disabled');
     }
   }
 

@@ -30,7 +30,7 @@ export default class ArticleCard {
       // Определяем, на какой странице мы нахоодимся и рендерим нужные кнопки
       if (this._id) {
         this._renderDeleteButton();
-        this._keywordContainer.classList.remove('element_disabled');
+        this._keywordContainer.classList.remove('element-disabled');
         this._helpContainer.textContent = 'Удалить статью';
       } else {
         this._renderAddButton();
@@ -41,13 +41,13 @@ export default class ArticleCard {
 
   _createDomElement() {
     const domElement = elementsConstructor('article', 'article', [
-      elementsConstructor('div', ['article__favorites-button', 'article__svg-icon_container'], articleFavoriteIcon.cloneNode(true)),
-      elementsConstructor('div', ['article__keyword', 'element_disabled'], '', { name: 'title', value: 'Ключевое слово данной статьи' }),
+      elementsConstructor('div', ['article__favorites-button', 'article__svg-icon-container'], articleFavoriteIcon.cloneNode(true)),
+      elementsConstructor('div', ['article__keyword', 'element-disabled'], '', { name: 'title', value: 'Ключевое слово данной статьи' }),
       elementsConstructor('div', 'article__help', 'Войдите, чтобы сохранять статьи'),
       elementsConstructor('div', 'article__picture', '', { name: 'style', value: `background: url(${encodeURI(this._image)}) center no-repeat` }),
       elementsConstructor('div', 'article__information', [
         elementsConstructor('a', 'article__link', [
-          elementsConstructor('div', 'article__information_block', [
+          elementsConstructor('div', 'article__information-block', [
             elementsConstructor('time', 'article__date', moment(this._date).format('LL'), { name: 'datetime', value: 'this._date' }),
             elementsConstructor('h5', 'article__title', this._title),
             elementsConstructor('p', 'article__description', this._description),
@@ -111,7 +111,7 @@ export default class ArticleCard {
     const del = function () {
       this._mainApi.deleteArticle(this._id)
         .then(() => {
-          this.domElement.classList.add('element_disabled');
+          this.domElement.classList.add('element-disabled');
           this._reloadCardListFunction();
         })
         .catch((err) => errorHandler(err, this._helpContainer));

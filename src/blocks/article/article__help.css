@@ -16,7 +16,7 @@
   transition: ease-out right 0.5s, opacity ease-out 0.5s;
 }
 
-.article__svg-icon_container:hover ~ .article__help{
+.article__svg-icon-container:hover ~ .article__help{
   opacity: 1;
   right:80px;
   visibility: visible;

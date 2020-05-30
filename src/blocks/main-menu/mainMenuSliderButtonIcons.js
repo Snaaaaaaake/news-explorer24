@@ -18,7 +18,7 @@ sliderButtonIconOpen.appendChild(sliderButtonIconOpenRect2);
 
 const sliderButtonIconClose = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 sliderButtonIconClose.classList.add('main-menu__slider-button_icon');
-sliderButtonIconClose.classList.add('element_disabled');
+sliderButtonIconClose.classList.add('element-disabled');
 sliderButtonIconClose.setAttribute('viewBox', '0 0 24 24');
 sliderButtonIconClose.setAttribute('width', '24');
 sliderButtonIconClose.setAttribute('height', '24');

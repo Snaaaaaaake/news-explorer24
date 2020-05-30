@@ -5,8 +5,8 @@ import errorHandler from '../../js/utils/errorHandler';
 export default class FormRegistration extends Form {
   constructor(mainApi) {
     super(mainApi);
-    this._responseLink = elementsConstructor('button', ['form__footer_link', 'form__footer_responce-link'], 'Выполнить вход');
-    this._footerLink = this.domElement.querySelector('.form__footer_link_login');
+    this._responseLink = elementsConstructor('button', ['form__footer-link', 'form__footer-responce-link'], 'Выполнить вход');
+    this._footerLink = this.domElement.querySelector('.form__footer-link_login');
     this._nameInput = this.domElement.querySelector('.form__input_name');
     this._responseMethod = null;
   }
@@ -48,7 +48,7 @@ export default class FormRegistration extends Form {
           { name: 'name', value: 'formRegistrationEmail' },
           { name: 'placeholder', value: 'Введите почту' },
         ]),
-        elementsConstructor('p', 'form__input_error'),
+        elementsConstructor('p', 'form__input-error'),
         elementsConstructor('label', 'form__label', 'Пароль', { name: 'for', value: 'formRegistrationPassword' }),
         elementsConstructor('input', ['form__input', 'form__input_password', 'form-element'], '', [
           { name: 'id', value: 'formRegistrationPassword' },
@@ -56,7 +56,7 @@ export default class FormRegistration extends Form {
           { name: 'name', value: 'formRegistrationPassword' },
           { name: 'placeholder', value: 'Введите пароль' },
         ]),
-        elementsConstructor('p', 'form__input_error'),
+        elementsConstructor('p', 'form__input-error'),
         elementsConstructor('label', 'form__label', 'Имя', { name: 'for', value: 'formRegistrationName' }),
         elementsConstructor('input', ['form__input', 'form__input_name', 'form-element'], '', [
           { name: 'id', value: 'formRegistrationName' },
@@ -64,8 +64,8 @@ export default class FormRegistration extends Form {
           { name: 'name', value: 'formRegistrationName' },
           { name: 'placeholder', value: 'Введите своё имя' },
         ]),
-        elementsConstructor('p', 'form__input_error'),
-        elementsConstructor('p', 'form__input_response-error'),
+        elementsConstructor('p', 'form__input-error'),
+        elementsConstructor('p', 'form__input-response-error'),
         elementsConstructor('button', ['form__button', 'form-element'], 'Зарегистрироваться', { name: 'type', value: 'submit' }),
       ], [
         { name: 'name', value: 'formRegistration' },
@@ -73,7 +73,7 @@ export default class FormRegistration extends Form {
       ]),
       elementsConstructor('p', 'form__footer', [
         elementsConstructor('span', 'form__footer_span', 'или '),
-        elementsConstructor('button', ['form__footer_link', 'form__footer_link_login'], 'Войти'),
+        elementsConstructor('button', ['form__footer-link', 'form__footer-link_login'], 'Войти'),
       ]),
     ]);
     return domElement;

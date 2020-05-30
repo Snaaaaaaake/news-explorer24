@@ -4,14 +4,14 @@ import mainPageLink from '../../js/constants/mainPageLink';
 import { facebookLink, githubLink } from '../../js/constants/about';
 import BaseComponent from '../../js/components/BaseComponent';
 
-const facebookIconSvg = require('../../images/footer__icon_facebook.svg').default;
-const githubIconSvg = require('../../images/footer__icon_github.svg').default;
-const facebookIconPng = require('../../images/footer__icon_facebook.png').default;
-const githubIconPng = require('../../images/footer__icon_github.png').default;
+const facebookIconSvg = require('../../images/footer__icon-facebook.svg').default;
+const githubIconSvg = require('../../images/footer__icon-github.svg').default;
+const facebookIconPng = require('../../images/footer__icon-facebook.png').default;
+const githubIconPng = require('../../images/footer__icon-github.png').default;
 
 export default class Footer extends BaseComponent {
   _createDomElement() {
-    const domElement = elementsConstructor('div', ['width-corrector', 'footer_container'], [
+    const domElement = elementsConstructor('div', ['width-corrector', 'footer__container'], [
       elementsConstructor('div', 'footer__element', [
         elementsConstructor('p', 'footer__copyright', '\u00A9 News-Explorer24.ru, Powered by News API'),
       ]),
@@ -23,7 +23,7 @@ export default class Footer extends BaseComponent {
         ]),
       ]),
       elementsConstructor('div', 'footer__element', [
-        elementsConstructor('a', ['footer__link', 'footer__link_icon'], [
+        elementsConstructor('a', ['footer__link', 'footer__link-icon'], [
           elementsConstructor('picture', 'footer__picture', [
             elementsConstructor('source', 'footer__picture_source', '', { name: 'srcset', value: `${mainPageLink}${githubIconSvg}` }),
             elementsConstructor('img', 'footer__icon', '', [
@@ -36,7 +36,7 @@ export default class Footer extends BaseComponent {
           { name: 'href', value: githubLink },
           { name: 'target', value: '_blank' },
         ]),
-        elementsConstructor('a', ['footer__link', 'footer__link_icon'], [
+        elementsConstructor('a', ['footer__link', 'footer__link-icon'], [
           elementsConstructor('picture', 'footer__picture', [
             elementsConstructor('source', 'footer__picture_source', '', { name: 'srcset', value: `${mainPageLink}${facebookIconSvg}` }),
             elementsConstructor('img', 'footer__icon', '', [

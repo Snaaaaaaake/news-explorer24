@@ -23,14 +23,14 @@ export default class Popup {
     }
     this._title.textContent = title;
     this._contentContainer.appendChild(content.domElement);
-    this._domElement.classList.remove('element_disabled');
-    this._overlay.classList.remove('element_disabled');
+    this._domElement.classList.remove('element-disabled');
+    this._overlay.classList.remove('element-disabled');
     document.addEventListener('keydown', this._escapeEventListener);
   }
 
   close() {
-    this._domElement.classList.add('element_disabled');
-    this._overlay.classList.add('element_disabled');
+    this._domElement.classList.add('element-disabled');
+    this._overlay.classList.add('element-disabled');
     document.removeEventListener('keydown', this._escapeEventListener);
   }
 
@@ -51,7 +51,7 @@ export default class Popup {
   }
 
   _createDomElement() {
-    const domElement = elementsConstructor('div', ['popup', 'element_disabled'], [
+    const domElement = elementsConstructor('div', ['popup', 'element-disabled'], [
       elementsConstructor('div', 'popup__close', '', { name: 'title', value: 'Закрыть' }),
       elementsConstructor('h6', 'popup__title'),
       elementsConstructor('div', 'popup__content'),
@@ -63,7 +63,7 @@ export default class Popup {
   }
 
   _createOverlay() {
-    const overlay = elementsConstructor('div', ['element_disabled', 'overlay', 'overlay_top']);
+    const overlay = elementsConstructor('div', ['element-disabled', 'overlay', 'overlay-top']);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => {
       this.close();

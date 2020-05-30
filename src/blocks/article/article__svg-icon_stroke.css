@@ -1,9 +1,0 @@
-.article__svg-icon_stroke {
-  fill: none;
-  stroke: #B6BCBF;
-  stroke-width: 2;
-}
-
-.article__svg-icon_container:hover .article__svg-icon_stroke {
-  stroke: #1A1B22;
-}

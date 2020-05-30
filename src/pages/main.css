@@ -13,6 +13,6 @@
 @import url(../blocks/main-menu/main-menu.css);
 @import url(../blocks/preloader/preloader.css);
 @import url(../blocks/overlay/overlay.css);
-@import url(../blocks/overlay/overlay_top.css);
+@import url(../blocks/overlay/overlay-top.css);
 @import url(../blocks/form-element/form-element.css);
-@import url(../blocks/element/element_disabled.css);
+@import url(../blocks/element/element-disabled.css);

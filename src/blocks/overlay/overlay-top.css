@@ -1,9 +1,9 @@
-.overlay_top {
+.overlay-top {
   z-index: 96;
 }
 
 @media (max-width:600px) {
-  .overlay_top {
+  .overlay-top {
     background-color: initial;
   }
 }

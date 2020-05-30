@@ -1,11 +1,11 @@
-.footer_container {
+.footer__container {
     display:flex;
     justify-content: space-between;
     align-items: center;
 }
 
 @media (max-width:730px) {
-  .footer_container {
+  .footer__container {
     align-items: flex-start;
     display:grid;
     grid-template-columns: auto auto;

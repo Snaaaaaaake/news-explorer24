@@ -5,12 +5,12 @@ import errorHandler from '../../js/utils/errorHandler';
 export default class FormLogin extends Form {
   constructor(mainApi) {
     super(mainApi);
-    this._footerLink = this.domElement.querySelector('.form__footer_link_reg');
+    this._footerLink = this.domElement.querySelector('.form__footer-link_reg');
   }
 
   _fetch() {
     this._disableForm();
-    this._mainApi.userLogin(this._emailInput.value, this._passwordInput.value).then((res) => {
+    this._mainApi.userLogin(this._emailInput.value, this._passwordInput.value).then(() => {
       this._enableForm();
       document.location.reload(true);
     })
@@ -31,7 +31,7 @@ export default class FormLogin extends Form {
           { name: 'name', value: 'formLoginEmail' },
           { name: 'placeholder', value: 'Введите почту' },
         ]),
-        elementsConstructor('p', 'form__input_error'),
+        elementsConstructor('p', 'form__input-error'),
         elementsConstructor('label', 'form__label', 'Пароль', { name: 'for', value: 'formLoginPassword' }),
         elementsConstructor('input', ['form__input', 'form__input_password', 'form-element'], '', [
           { name: 'id', value: 'formLoginPassword' },
@@ -40,8 +40,8 @@ export default class FormLogin extends Form {
           { name: 'name', value: 'formLoginPassword' },
           { name: 'placeholder', value: 'Введите пароль' },
         ]),
-        elementsConstructor('p', 'form__input_error'),
-        elementsConstructor('p', 'form__input_response-error'),
+        elementsConstructor('p', 'form__input-error'),
+        elementsConstructor('p', 'form__input-response-error'),
         elementsConstructor('button', ['form__button', 'form-element'], 'Войти', { name: 'type', value: 'submit' }),
       ], [
         { name: 'name', value: 'formLogin' },
@@ -49,7 +49,7 @@ export default class FormLogin extends Form {
       ]),
       elementsConstructor('p', 'form__footer', [
         elementsConstructor('span', 'form__footer_span', 'или '),
-        elementsConstructor('button', ['form__footer_link', 'form__footer_link_reg'], 'Зарегистрироваться'),
+        elementsConstructor('button', ['form__footer-link', 'form__footer-link_reg'], 'Зарегистрироваться'),
       ]),
     ]);
     return domElement;

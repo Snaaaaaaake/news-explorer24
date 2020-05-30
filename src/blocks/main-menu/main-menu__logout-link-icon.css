@@ -1,0 +1,9 @@
+.main-menu__logout-link-icon {
+  margin-bottom:-2px;
+  padding-left: 6px;
+  fill: #fff;
+}
+
+.main-menu__link_black .main-menu__logout-link-icon {
+  fill: #1A1B22;
+}
