@@ -5,7 +5,7 @@ moment().format();
 
 export default class NewsApi {
   constructor(token) {
-    this.baseUrl = 'https://newsapi.org/v2/everything?sortBy=popularity&';
+    this.baseUrl = 'https://nomoreparties.co/news/v2/everything?sortBy=popularity&';
     this.token = `apiKey=${token}`;
   }
 

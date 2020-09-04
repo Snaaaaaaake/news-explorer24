@@ -1,2 +1,2 @@
-const newsApiToken = 'a6db4f983f5945259966f4ee4ac8106e';
+const newsApiToken = 'fa94442baf2c4c479742352c83f1e308';
 export default newsApiToken;

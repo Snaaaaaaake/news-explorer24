@@ -1,12 +1,10 @@
 
 import elementsConstructor from '../../js/utils/elementsConstructor';
 import mainPageLink from '../../js/constants/mainPageLink';
-import { facebookLink, githubLink } from '../../js/constants/about';
+import { githubLink } from '../../js/constants/about';
 import BaseComponent from '../../js/components/BaseComponent';
 
-const facebookIconSvg = require('../../images/footer__icon-facebook.svg').default;
 const githubIconSvg = require('../../images/footer__icon-github.svg').default;
-const facebookIconPng = require('../../images/footer__icon-facebook.png').default;
 const githubIconPng = require('../../images/footer__icon-github.png').default;
 
 export default class Footer extends BaseComponent {
@@ -34,19 +32,6 @@ export default class Footer extends BaseComponent {
           ]),
         ], [
           { name: 'href', value: githubLink },
-          { name: 'target', value: '_blank' },
-        ]),
-        elementsConstructor('a', ['footer__link', 'footer__link-icon'], [
-          elementsConstructor('picture', 'footer__picture', [
-            elementsConstructor('source', 'footer__picture_source', '', { name: 'srcset', value: `${mainPageLink}${facebookIconSvg}` }),
-            elementsConstructor('img', 'footer__icon', '', [
-              { name: 'title', value: 'Ссылка на Facebook' },
-              { name: 'alt', value: 'Ссылка на Facebook' },
-              { name: 'src', value: `${mainPageLink}${facebookIconPng}` },
-            ]),
-          ]),
-        ], [
-          { name: 'href', value: facebookLink },
           { name: 'target', value: '_blank' },
         ]),
       ]),

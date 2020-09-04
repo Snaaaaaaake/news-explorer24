@@ -44,7 +44,7 @@ export default class ArticleCard {
       elementsConstructor('div', ['article__favorites-button', 'article__svg-icon-container'], articleFavoriteIcon.cloneNode(true)),
       elementsConstructor('div', ['article__keyword', 'element-disabled'], '', { name: 'title', value: 'Ключевое слово данной статьи' }),
       elementsConstructor('div', 'article__help', 'Войдите, чтобы сохранять статьи'),
-      elementsConstructor('div', 'article__picture', '', { name: 'style', value: `background: url(${encodeURI(this._image)}) center no-repeat` }),
+      elementsConstructor('div', 'article__picture', '', { name: 'style', value: `background: url(${encodeURI(this._image)}) center no-repeat; background-size: cover;` }),
       elementsConstructor('div', 'article__information', [
         elementsConstructor('a', 'article__link', [
           elementsConstructor('div', 'article__information-block', [

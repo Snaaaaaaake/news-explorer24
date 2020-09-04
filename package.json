@@ -7,7 +7,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
-    "deploy": "npm run build && cross-env NODE_ENV=production gh-pages -d dist && scp -r ./dist/* praktikum@84.201.138.229:/home/praktikum/news-explorer-frontend"
+    "deploy": "npm run build && cross-env NODE_ENV=production gh-pages -d dist && scp -r ./dist/* praktikum@84.201.177.47:/home/praktikum/news-explorer-frontend"
   },
   "repository": {
     "type": "git",
